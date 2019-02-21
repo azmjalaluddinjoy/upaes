@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info</title>
+</head>
+<body>
+<form action="/user/info/" method="post">
+        {% csrf_token %}
+        Whats your name <input type="text" name="user_name">
+        <input type="submit" value="okey">
+
+</form>
+    {% if name %}
+       <p> Hello Dear {{ name }}, তুমি কেমন আছ ?</p>
+    {% endif %}
+
+
+</body>
+</html>
