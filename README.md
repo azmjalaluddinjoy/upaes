@@ -46,3 +46,10 @@ work.
 
 Students can also update their project status weekly and provide in for regarding the progress,
 which will be monitored by all relevant supervisors/professors and head of departments.
+
+### Technology used to Develop this
+
+#### Backend Programming Language: Python 3.6
+#### Framework: Django 2.1.6
+#### Database: Django default SQLite3
+#### Frontend: Html, Css, Bootstrap, javascript
