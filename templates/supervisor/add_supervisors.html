@@ -11,30 +11,68 @@
 <div class="row">
 
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-10 col-lg-7">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Adding New Supervisors to the list</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Project Description:</div>
-                      <a class="dropdown-item" href="#">Show All</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
+                  <h6 class="m-0 font-weight-bold text-primary">Adding New Supervisors</h6>
+{#                  <div class="dropdown no-arrow">#}
+{#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
+{#                    </a>#}
+{#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">#}
+{#                      <div class="dropdown-header">Project Description:</div>#}
+{#                      <a class="dropdown-item" href="#">Show All</a>#}
+{#                      <a class="dropdown-item" href="#">Another action</a>#}
+{#                      <div class="dropdown-divider"></div>#}
+{#                      <a class="dropdown-item" href="#">Something else here</a>#}
+{#                    </div>#}
+{#                  </div>#}
                 </div>
                 <!-- Card Body -->
 
                 <div class="card-body">
-                    <p>
-                      Joy Bangla Joy Bangla JOy Bangla JOy Bangla But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?
-                   who chooses to enjoy a pleasure that has no annoying consequences</p>
+                    <div class="supervisor-form">
+                        <form name="supervisorAdding" action="/supervisor/add_request/" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" name="supervisor_id" placeholder="Registered faculty bearing ID (eg: 710002113)" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="faculty_name" placeholder="Full name" required="required">
+                            </div>
+                            <div class="form-group">
+                                <select type="text" class="form-control" name="designation" required="required">
+                                  <option value="Lecturer">Lecturer</option>
+                                  <option value="Senior Lecturer">Lecturer (Senior Scale)</option>
+                                  <option value="Assistant Professor">Assistant Professor</option>
+                                  <option value="Associate Professor">Associate Professor</option>
+                                  <option value="Head">Head of the Department</option>
+                                  <option value="External">External</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="web_page" placeholder="Profile web page (if any)">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="email" placeholder="Email ID" required="required">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+                            </div>
+
+                            <div align="center" class="submit-block table">
+                                <button class="btn btn-primary btn-md btn-block>
+                                <span class="text">Submit</span>
+                                </button>
+                            </div>
+                            {% comment %}<input type="submit" class="btn btn-success btn-lg btn-block">{% endcomment %}
+                        </form>
+
+                    </div>
 {#                  <div class="chart-area">#}
 {#                    <canvas id="myAreaChart"></canvas>#}
 {#                  </div>#}
@@ -42,27 +80,27 @@
               </div>
             </div>
 
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Supervisors selected sub category</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+{#            <!-- Pie Chart -->#}
+{#            <div class="col-xl-4 col-lg-5">#}
+{#              <div class="card shadow mb-4">#}
+{#                <!-- Card Header - Dropdown -->#}
+{#                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
+{#                  <h6 class="m-0 font-weight-bold text-primary">Supervisors selected sub category</h6>#}
+{#                  <div class="dropdown no-arrow">#}
+{#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+{#                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
+{#                    </a>#}
+{#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">#}
+{#                      <div class="dropdown-header">Dropdown Header:</div>#}
+{#                      <a class="dropdown-item" href="#">Action</a>#}
+{#                      <a class="dropdown-item" href="#">Another action</a>#}
+{#                      <div class="dropdown-divider"></div>#}
+{#                      <a class="dropdown-item" href="#">Something else here</a>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
 </div>
 {% endblock %}
 

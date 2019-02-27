@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New category</title>
+    {% extends 'administration/base.html' %}
+</head>
+<body id="page-top">
+
+{% block page_content %}
+<div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-10 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Adding New Categories</h6>
+
+                </div>
+                <!-- Text Body -->
+                <div class="card-body">
+                    <div class="supervisor-form">
+
+                        <form name="supervisorAdding" action="/project/add_category_request/" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <br>
+                                <input type="text" class="form-control" name="category" placeholder="category (eg. 2D Animated Software)" required="required">
+                            </div>
+                            <div class="form-group">
+                                <select type="text" class="form-control" name="projtype" required="required">
+                                  <option value="Project">Project Based</option>
+                                  <option value="Thesis">Thesis Based</option>
+                                </select>
+                            </div>
+
+                            <div align="center" class="submit-block table">
+                                <button class="btn btn-primary btn-md btn-block>
+                                <span class="text">Save Category Information</span>
+                                </button>
+                            </div>
+                            {% comment %}<input type="submit" class="btn btn-success btn-lg btn-block">{% endcomment %}
+                        </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+</div>
+{% endblock %}
+
+
+</body>
+</html>

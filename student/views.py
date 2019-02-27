@@ -10,7 +10,12 @@ def home(request):
     for post in all_post:
         print(post)
 
-    return render(request, 'student/index.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+    return render(request, 'student/home_student.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+
+
+def apply_project(request):
+
+    return render(request, 'student/apply_project.html')
 
 
 def authentication(request):

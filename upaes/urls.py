@@ -15,7 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from student import views
+admin.site.site_header = "University Project Approval & Evaluation System (Developer Admin)"
+admin.site.site_title = "UPAES Admin Portal"
+admin.site.index_title = "Welcome to UPAES"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +30,5 @@ urlpatterns = [
     path('user/', include('user_info.urls'), name='user'),
     path('administration/', include('administration.urls'), name='administration'),
     path('supervisor/', include('supervisor.urls'), name='supervisor'),
-]
+    path('project/', include('project.urls'), name='project'),
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+staticfiles_urlpatterns()

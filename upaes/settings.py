@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'information',
     'supervisor',
     'student',
+    'project'
 ]
 
 MIDDLEWARE = [

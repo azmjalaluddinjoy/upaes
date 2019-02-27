@@ -21,3 +21,10 @@ def login(request):
 
     return render(request, 'administration/login.html')
 
+
+def contact_developers(request):
+
+    return render(request, 'administration/contact_developers.html')
+
+
+
