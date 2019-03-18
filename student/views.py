@@ -1,6 +1,7 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Post, Student
+from project.models import Category
 # Create your views here.
 
 
@@ -14,8 +15,9 @@ def home(request):
 
 
 def apply_project(request):
+    allcategory = Category.objects.all()
 
-    return render(request, 'student/apply_project.html')
+    return render(request, 'student/apply_project.html', {'allCategory': allcategory})
 
 
 def authentication(request):
