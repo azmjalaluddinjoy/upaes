@@ -1,6 +1,12 @@
 from django.db import models
+# import django_tables2 as tables
 
 # Create your models here.
+
+
+# class SimpleTable(tables.Table):
+#     class Meta:
+#         model = Simple
 
 
 class Supervisor(models.Model):

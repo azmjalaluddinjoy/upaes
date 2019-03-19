@@ -1,35 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 2%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
     <meta charset="UTF-8">
     <title>All Supervisors</title>
     {% extends 'administration/base.html' %}
+
 </head>
 <body id="page-top">
 
 {% block page_content %}
 <div class="row">
 
-            <!-- Area Chart -->
-            <div class="col-xl-10 col-lg-7">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">All Registered Supervisors / Internals / Externals</h6>
-                </div>
-
-                <div class="card-body">
+{#            <!-- Area Chart -->#}
+{#            <div class="col-xl-10 col-lg-7">#}
+{#              <div class="card shadow mb-4">#}
+{#                <!-- Card Header - Dropdown -->#}
+{#                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
+{#                  <h6 class="m-0 font-weight-bold text-primary">All Registered Supervisors / Internals / Externals</h6>#}
+{#                </div>#}
+{##}
+{#                <div class="card-body">#}
                     <div class="supervisor-form">
-                    {% for all in supervisors %}
-                       {{ all |linebreaks }}
-                    {% endfor %}
+                    <div class="container">
+                         <table class="table table-striped table-bordered table-hover" id="mydata">
+
+                         <h6 class="m-0 font-weight-bold text-primary">All Registered Supervisors (Internals/Externals)</h6>
+                       <br> <thead>
+                        <tr>
+                            <th>List</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Designation</th>
+                            <th>Email</th>
+                            <th>Web Profile</th>
+                        </tr>
+                        </thead>
+
+                         <tfoot>
+                         <tr>
+{#                            <th>ID</th>#}
+{#                            <th>Serial</th>#}
+{#                            <th>Name</th>#}
+{#                            <th>Designation</th>#}
+{#                            <th>Email</th>#}
+                        </tr>
+                         </tfoot>
+                        {% for allSupervisor in supervisors %}
+                         <tbody>
+                         <tr>
+                            <td>{{ forloop.counter }} </td>
+                            <td>{{ allSupervisor.supervisor_id }}</td>
+                            <td>{{ allSupervisor.faculty_name }}</td>
+                            <td>{{ allSupervisor.designation }}</td>
+                            <td>{{ allSupervisor.email }}</td>
+                             <td><a href="{{ allSupervisor.web_page }}">Click to view</a></td>
+                        </tr>
+                         </tbody>
+                             {% endfor %}
+                         </table>
+                    </div>
+
+
+{#                    for auto increment information#}
+{#                    {% for all in supervisors %}#}
+{#                       {{ all |linebreaks }}#}
+{#                    {% endfor %}#}
+
+
+
+
+{#                    <tr>#}
+{#                            <td>{{ forloop.counter }} </td>#}
+{#                            <td>{{ allSupervisor.supervisor_id }}</td>#}
+{#                            <td>{{ allSupervisor.faculty_name }}</td>#}
+{#                            <td>{{ allSupervisor.designation }}</td>#}
+{#                            <td>{{ allSupervisor.email }}</td>#}
+{#                            <td>#}
+{#                                <a href="/odesk/?editodeskform={{allSupervisor.faculty_name}} " title="Edit"><i class="splashy-document_letter_edit"></i></a>#}
+{#                                <!---- <a href="/hours/?addhid={{allSupervisor.designation}}" title="Interview"><i class="splashy-document_letter_okay"></i></a>----->#}
+{#                                <a href="/deleteodesk/?dltodid={{allSupervisor.email}}" title="Remove"><i class="splashy-document_letter_remove"></i></a>#}
+{#                            </td>#}
+{#                        </tr>#}
                     </div>
                 </div>
-              </div>
-            </div>
-
-
-</div>
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#</div>#}
 {% endblock %}
 
 

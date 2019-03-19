@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'supervisor',
     'student',
     'project'
+    # 'django_tables2',
 ]
 
 MIDDLEWARE = [
