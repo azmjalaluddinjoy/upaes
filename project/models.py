@@ -23,3 +23,21 @@ class ProjectPrimaryInfo(models.Model):
 
     def __str__(self):
         return self.p_name
+
+
+# class ProcessProductTracking(models.Model):
+#     ppt_id =
+#     s_id =
+#     p_id =
+#     srs = models.CharField(max_length=200)
+#     spmp = models.CharField(max_length=200)
+#     release_plan = models.CharField(max_length=200)
+#     iteration_plan = models.CharField(max_length=200)
+#     system_architecture_design = models.CharField(max_length=200)
+#     coding_standard = models.CharField(max_length=200)
+#     test_plan = models.CharField(max_length=200)
+#     test_case_specification = models.CharField(max_length=200)
+#     user_guide = models.CharField(max_length=200)
+#     system_video_documentation = models.CharField(max_length=200)
+#     video_demonstration = models.CharField(max_length=200)
+#     source_code_link = models.CharField(max_length=200)

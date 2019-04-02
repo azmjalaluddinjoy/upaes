@@ -3,6 +3,11 @@ from .models import Supervisor
 # Create your views here.
 
 
+def home(request):
+
+    return render(request, 'supervisor/home_supervisor.html')
+
+
 def add(request):
 
     return render(request, 'supervisor/add_supervisors.html')

@@ -1,8 +1,11 @@
-from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
+from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, redirect
 from .models import Post, Student
 from project.models import Category
+from django.contrib.auth import login, authenticate
+from .forms import SignUpForm
 # Create your views here.
+from information.models import Districts
 
 
 def home(request):
@@ -20,9 +23,29 @@ def apply_project(request):
     return render(request, 'student/apply_project.html', {'allCategory': allcategory})
 
 
+def track_project(request):
+
+    return render(request, 'student/track_project.html')
+
+
 def authentication(request):
 
     return render(request, 'student/login.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/student/home/')
+    else:
+        form = SignUpForm()
+    return render(request, 'student/signup.html', {'form': form})
 
 
 def registration(request):
@@ -44,16 +67,19 @@ def add_registered_student(request):
     registered_req_student = Student(first_name=first_name, last_name=last_name, studentId=student_id,
                                                batch=batch, semester=semester, enrollKey=enroll_key, email=email, password=password)
     registered_req_student.save()
+    # dis = Districts(name='abc',division_id=1)
     print("Hello, form is submitted")
     return render(request, "student/login.html")
 
 
 def login_request(request):
 
-    m = Student.objects.get(studentId=request.POST['emp_id'])
-    if m.password == request.POST['password']:
-        # request.session['member_id'] = m.id
-        return HttpResponseRedirect('/user/info/')
+    m = Student.objects.get(studentId=request.POST['student_id'])
+    if m.password == request.POST['student_password']:
+        request.session["student_logged_in"] = m.id
+        return HttpResponseRedirect('/student/home/')
+    else:
+        return HttpResponseRedirect('/student/login_failed')
 
     # except Member.DoesNotExist:
     #         return HttpResponse("Your username and password didn't match.")
