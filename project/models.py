@@ -44,7 +44,7 @@ class ProcessProductTracking(models.Model):
     source_code_link = models.CharField(blank=True, null=True, max_length=200)
 
     def __str__(self):
-        return self.ppt_id
+        return self.srs
 
 
 class Comment(models.Model):
@@ -54,9 +54,6 @@ class Comment(models.Model):
     faculty_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
     comment_title = models.CharField(blank=True, null=True, max_length=500)
     comment = models.CharField(blank=True, null=True, max_length=1000)
-
-    def __str__(self):
-        return self.comment_id
 
 
 class Evaluation(models.Model):
@@ -70,9 +67,6 @@ class Evaluation(models.Model):
     internal_02_mark = models.IntegerField(blank=True, null=True)
     external_mark = models.IntegerField(blank=True, null=True)
 
-    def __str__(self):
-        return self.eval_id
-
 
 class Supervised(models.Model):
     supervisor_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
@@ -82,4 +76,4 @@ class Supervised(models.Model):
     semester = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.s_id
+        return self.semester

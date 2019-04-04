@@ -17,13 +17,47 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Project Dashboard</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Project Basic Information</h6>
 
                 </div>
                 <!-- Text Body -->
+                   <div class="card-body">
+
+                        <p>Hello world</p>
+                       {% for project_basic_info in all_basic_info %}
+                       {{ project_basic_info.p_name |linebreaks }}
+                        {% endfor %}
+                   </div>
+
+                </div>
+                          <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Process & Product Track </h6>
+                </div>
+                <!-- Text Body -->
+                   <div class="card-body">
+                       {% for process_info in all_tracking_info %}
+                           <p><b>Software Requirement Specification</b></p>
+                           {{ process_info.srs |linebreaks }}
+                           {{ process_info.spmp |linebreaks }}
+                           {{ process_info.release_plan |linebreaks }}
+                           {{ process_info.iteration_plan |linebreaks }}
+                           {{ process_info.system_architecture_design |linebreaks }}
+                           {{ process_info.coding_standard |linebreaks }}
+                           {{ process_info.test_plan |linebreaks }}
+                           {{ process_info.test_case_specification |linebreaks }}
+                           {{ process_info.user_guide |linebreaks }}
+                           {{ process_info.system_video_documentation |linebreaks }}
+                           {{ process_info.video_demonstration |linebreaks }}
+                           {{ process_info.source_code_link |linebreaks }}
+
+                        {% endfor %}
+                   </div>
 
               </div>
             </div>
+
 
 </div>
 {% endblock %}

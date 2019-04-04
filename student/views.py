@@ -28,7 +28,9 @@ def track_project(request):
     all_tracking_info = ProcessProductTracking.objects.all()
     all_comment = Comment.objects.all()
 
-    return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info})
+    return render(request, 'student/track_project.html',
+                  {'all_basic_info': all_basic_info, 'all_tracking_info': all_tracking_info,
+                   'all_comment': all_comment})
 
 
 def authentication(request):
@@ -79,10 +81,28 @@ def login_request(request):
 
     m = Student.objects.get(studentId=request.POST['student_id'])
     if m.password == request.POST['student_password']:
+
+        def set_color(request):
+            if "favorite_color" in request.GET:
+
+                # Create an HttpResponse object...
+                response = HttpResponse("Your favorite color is now %s" % \
+                                        request.GET["favorite_color"])
+
+                # ... and set a cookie on the response
+                response.set_cookie("favorite_color",
+                                    request.GET["favorite_color"])
+
+                return response
+
+            else:
+                return HttpResponse("You didn't give a favorite color.")
+
+
         request.session["student_logged_in"] = m.id
         return HttpResponseRedirect('/student/home/')
     else:
-        return HttpResponseRedirect('/student/login_failed')
+        return HttpResponseRedirect('/student/registration')
 
     # except Member.DoesNotExist:
     #         return HttpResponse("Your username and password didn't match.")

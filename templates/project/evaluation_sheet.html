@@ -1,0 +1,43 @@
+{% extends 'student/base_student.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pdf Generation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+    body {
+      background-color: #f7f7f7;
+    }
+  </style>
+</head>
+<body>
+{% block page_content %}
+
+    <h1>Test Pdf Template Generation by Joy</h1>
+
+{% for paragraph in paragraphs %}
+    <p>{{ paragraph }}</p>
+  {% endfor %}
+
+
+{#    {% for process_info in all_tracking_info %}#}
+{#        <p><b>Software Requirement Specification</b></p>#}
+{#        {{ process_info.srs |linebreaks }}#}
+{#        {{ process_info.spmp |linebreaks }}#}
+{#        {{ process_info.release_plan |linebreaks }}#}
+{#        {{ process_info.iteration_plan |linebreaks }}#}
+{#        {{ process_info.system_architecture_design |linebreaks }}#}
+{#        {{ process_info.coding_standard |linebreaks }}#}
+{#        {{ process_info.test_plan |linebreaks }}#}
+{#        {{ process_info.test_case_specification |linebreaks }}#}
+{#        {{ process_info.user_guide |linebreaks }}#}
+{#        {{ process_info.system_video_documentation |linebreaks }}#}
+{#        {{ process_info.video_demonstration |linebreaks }}#}
+{#        {{ process_info.source_code_link |linebreaks }}#}
+{#    {% endfor %}#}
+
+{% endblock %}
+    </body>
+</html>
