@@ -19,6 +19,6 @@ class Supervisor(models.Model):
     password = models.CharField(max_length=13)
 
     def __str__(self):
-        # return self.faculty_name
-        return '%s %s %s %s' % (self.supervisor_id, self.faculty_name, self.designation, self.email)
+        return self.supervisor_id
+        # return '%s %s %s %s' % (self.supervisor_id, self.faculty_name, self.designation, self.email)
 

@@ -1,7 +1,7 @@
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Post, Student
-from project.models import Category
+from project.models import Category, ProjectPrimaryInfo, ProcessProductTracking, Comment
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 # Create your views here.
@@ -24,8 +24,11 @@ def apply_project(request):
 
 
 def track_project(request):
+    all_basic_info = ProjectPrimaryInfo.objects.all()
+    all_tracking_info = ProcessProductTracking.objects.all()
+    all_comment = Comment.objects.all()
 
-    return render(request, 'student/track_project.html')
+    return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info})
 
 
 def authentication(request):
