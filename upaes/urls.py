@@ -32,3 +32,6 @@ urlpatterns = [
     path('supervisor/', include('supervisor.urls'), name='supervisor'),
     path('project/', include('project.urls'), name='project'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)+staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_rooot=settings.MEDIA_ROOT)

@@ -1,0 +1,62 @@
+{% extends 'administration/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Evaluation status</title>
+</head>
+<body id="page-top">
+
+{% block page_content %}
+    <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Project Evaluation status</h6>
+                </div>
+                <!-- Text Body -->
+        <div class="card-body">
+        <div class="supervisor-form">
+        <div class="container">
+            <table class="table table-striped table-bordered table-hover" id="mydata">
+                <br> <thead>
+            <tr>
+                <th>List</th>
+                <th>Student_ID</th>
+                <th>Document<br>Plagiarism(%)</th>
+                <th>Source Code<br>Plagiarism(%)</th>
+                <th>Supervisor<br>Marks</th>
+                <th>Internal_1<br>Marks</th>
+                <th>Internal_2<br>Marks</th>
+                <th>External<br>Marks</th>
+                <th>Total<br>Marks</th>
+            </tr>
+            </thead>
+                {% for evaluation_mark in evaluation_mark %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }} </td>
+                        <td>{{ evaluation_mark.s_id }} </td>
+                        <td>{{ evaluation_mark.plagiarism_documentation }}</td>
+                        <td>{{ evaluation_mark.plagiarism_source_code }}</td>
+                        <td>{{ evaluation_mark.supervisor_mark }}</td>
+                        <td>{{ evaluation_mark.internal_01_mark }}</td>
+                        <td>{{ evaluation_mark.internal_02_mark }}</td>
+                        <td>{{ evaluation_mark.external_mark }}</td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+{#                {% endfor %}#}
+
+            </table>
+        </div>
+    </div>
+        </div>
+    </div>
+
+<div class="row">
+
+</div>
+{% endblock %}
+</body>
+</html>

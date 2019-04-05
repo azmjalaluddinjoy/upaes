@@ -1,43 +1,63 @@
-{% extends 'student/base_student.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Pdf Generation</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <style>
-    body {
-      background-color: #f7f7f7;
-    }
+    {#body {#}
+    {#  background-color: #f7f7f7;#}
+    {#}#}
   </style>
 </head>
-<body>
-{% block page_content %}
+<body id="page-top">
 
-    <h1>Test Pdf Template Generation by Joy</h1>
+    <h1>Student Evaluation Report</h1>
 
-{% for paragraph in paragraphs %}
-    <p>{{ paragraph }}</p>
-  {% endfor %}
+<div class="row">
+    <div class="supervisor-form">
+        <div class="container">
+            <table class="table table-striped table-bordered table-hover" id="mydata">
+                <h6 class="m-0 font-weight-bold text-primary">All Evaluated Students</h6>
+                <br> <thead>
+            <tr>
+                <th>List</th>
+                <th>Student_ID</th>
+                <th>Supervisor</th>
+                <th>Internal_1</th>
+                <th>Internal_2</th>
+                <th>External</th>
+            </tr>
+            </thead>
 
+                <tfoot>
+{#                <tr>#}
+{#                    <th>ID</th>#}
+{#                    <th>Serial</th>#}
+{#                    <th>Name</th>#}
+{#                    <th>Designation</th>#}
+{#                    <th>Email</th>#}
+{#                </tr>#}
+                </tfoot>
+{#            {% for student_info in student_info %}#}
+                {% for evaluation_report in evaluation_report %}
+                <tbody>
+                    <tr>
+                        <td>{{ forloop.counter }} </td>
+                        <td>{{ evaluation_report.s_id }} </td>
+                        <td>{{ evaluation_report.supervisor_mark }}</td>
+                        <td>{{ evaluation_report.internal_01_mark }}</td>
+                        <td>{{ evaluation_report.internal_02_mark }}</td>
+                        <td>{{ evaluation_report.external_mark }}</td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+{#                {% endfor %}#}
 
-{#    {% for process_info in all_tracking_info %}#}
-{#        <p><b>Software Requirement Specification</b></p>#}
-{#        {{ process_info.srs |linebreaks }}#}
-{#        {{ process_info.spmp |linebreaks }}#}
-{#        {{ process_info.release_plan |linebreaks }}#}
-{#        {{ process_info.iteration_plan |linebreaks }}#}
-{#        {{ process_info.system_architecture_design |linebreaks }}#}
-{#        {{ process_info.coding_standard |linebreaks }}#}
-{#        {{ process_info.test_plan |linebreaks }}#}
-{#        {{ process_info.test_case_specification |linebreaks }}#}
-{#        {{ process_info.user_guide |linebreaks }}#}
-{#        {{ process_info.system_video_documentation |linebreaks }}#}
-{#        {{ process_info.video_demonstration |linebreaks }}#}
-{#        {{ process_info.source_code_link |linebreaks }}#}
-{#    {% endfor %}#}
+            </table>
+        </div>
+    </div>
+</div>
 
-{% endblock %}
-    </body>
+</body>
 </html>

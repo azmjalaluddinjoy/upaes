@@ -24,7 +24,6 @@ def add_request(request):
     add_request_supervisor = Supervisor(supervisor_id=supervisor_id, faculty_name=faculty_name, designation=designation,
                                         web_page=web_page, email=email, password=password)
     add_request_supervisor.save()
-    print("New Supervisor registered successfully")
     return render(request, 'supervisor/add_supervisors.html')
 
 

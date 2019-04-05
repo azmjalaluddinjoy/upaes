@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Administration
+from project.models import ProjectPrimaryInfo
 # Create your views here.
 
 
@@ -10,6 +11,11 @@ def home(request):
         print(post)
 
     return render(request, 'administration/home.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+
+
+def all_project_status(request):
+    all_basic_info = ProjectPrimaryInfo.objects.all()
+    return render(request, 'administration/all_project_status.html', {'all_basic_info': all_basic_info})
 
 
 def add_supervisors(request):

@@ -55,6 +55,9 @@ class Comment(models.Model):
     comment_title = models.CharField(blank=True, null=True, max_length=500)
     comment = models.CharField(blank=True, null=True, max_length=1000)
 
+    def __int__(self):
+        return self.comment_id
+
 
 class Evaluation(models.Model):
     eval_id = models.AutoField(primary_key=True)
@@ -67,6 +70,9 @@ class Evaluation(models.Model):
     internal_02_mark = models.IntegerField(blank=True, null=True)
     external_mark = models.IntegerField(blank=True, null=True)
 
+    def __int__(self):
+        return self.eval_id
+
 
 class Supervised(models.Model):
     supervisor_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
@@ -75,5 +81,5 @@ class Supervised(models.Model):
     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     semester = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.semester
+    def __int__(self):
+        return self.supervisor_id
