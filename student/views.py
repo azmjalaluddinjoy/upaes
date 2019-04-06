@@ -1,3 +1,4 @@
+from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from .models import Post, Student
@@ -25,8 +26,14 @@ def apply_project(request):
 
 def track_project(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
-    all_tracking_info = ProcessProductTracking.objects.all()
+    all_tracking_info = ProcessProductTracking.objects.filter(s_id=Student.objects.get(email=request.user.email))
     all_comment = Comment.objects.all()
+
+    if request.method == 'POST':
+        srs_file = request.FILES['srs']
+        fs = FileSystemStorage()
+        srs_file_name = fs.save(srs_file.name, srs_file)
+        uploaded_srs_file_url = fs.url(srs_file_name)
 
     return render(request, 'student/track_project.html',
                   {'all_basic_info': all_basic_info, 'all_tracking_info': all_tracking_info,
@@ -81,24 +88,6 @@ def login_request(request):
 
     m = Student.objects.get(studentId=request.POST['student_id'])
     if m.password == request.POST['student_password']:
-
-        def set_color(request):
-            if "favorite_color" in request.GET:
-
-                # Create an HttpResponse object...
-                response = HttpResponse("Your favorite color is now %s" % \
-                                        request.GET["favorite_color"])
-
-                # ... and set a cookie on the response
-                response.set_cookie("favorite_color",
-                                    request.GET["favorite_color"])
-
-                return response
-
-            else:
-                return HttpResponse("You didn't give a favorite color.")
-
-
         request.session["student_logged_in"] = m.id
         return HttpResponseRedirect('/student/home/')
     else:

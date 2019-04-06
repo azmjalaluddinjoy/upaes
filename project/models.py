@@ -44,19 +44,20 @@ class ProcessProductTracking(models.Model):
     source_code_link = models.CharField(blank=True, null=True, max_length=200)
 
     def __str__(self):
-        return self.srs
+        return '%s' % self.ppt_id
 
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
     ppt_id = models.ForeignKey(ProcessProductTracking, on_delete=models.CASCADE)
+    ppt_field = models.CharField(blank=True, null=True, max_length=30)
     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     faculty_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
     comment_title = models.CharField(blank=True, null=True, max_length=500)
     comment = models.CharField(blank=True, null=True, max_length=1000)
 
-    def __int__(self):
-        return self.comment_id
+    def __str__(self):
+        return '%s' % self.comment_id
 
 
 class Evaluation(models.Model):
@@ -70,8 +71,8 @@ class Evaluation(models.Model):
     internal_02_mark = models.IntegerField(blank=True, null=True)
     external_mark = models.IntegerField(blank=True, null=True)
 
-    def __int__(self):
-        return self.eval_id
+    def __str__(self):
+        return '%s' % self.eval_id
 
 
 class Supervised(models.Model):
@@ -81,5 +82,5 @@ class Supervised(models.Model):
     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
     semester = models.CharField(max_length=50)
 
-    def __int__(self):
-        return self.supervisor_id
+    def __str__(self):
+        return '%s %s %s' % (self.supervisor_id, self.s_id, self.category)

@@ -102,8 +102,7 @@
 </head>
 <body>
 <div class="signup-form">
-{#    action="/student/add_registered_student/"#}
-    <form name="reg" method="post">
+    <form name="reg" method="post" action="/student/add_registered_student/">
         {% csrf_token %}
 		<h2>Register</h2>
 		<p class="hint-text">Create your account from here</p>

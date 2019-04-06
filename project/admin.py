@@ -19,7 +19,7 @@ class ProcessProductTrackingAdminView(admin.ModelAdmin):
 
 
 class CommentAdminView(admin.ModelAdmin):
-    list_display = ('comment_id', 'ppt_id', 's_id', 'faculty_id', 'comment_title', 'comment')
+    list_display = ('comment_id', 'ppt_id', 'ppt_field', 's_id', 'faculty_id', 'comment_title', 'comment')
 
 
 class EvaluationAdminView(admin.ModelAdmin):
