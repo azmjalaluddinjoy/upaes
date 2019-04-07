@@ -12,6 +12,14 @@ class Post(models.Model):
         return self.title
 
 
+class Values(models.Model):
+
+    user_value = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return '%s' % self.user_value
+
+
 class Student(models.Model):
 
     first_name = models.CharField(max_length=50)

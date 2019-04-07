@@ -26,33 +26,48 @@ class ProjectPrimaryInfo(models.Model):
         return self.p_name
 
 
-class ProcessProductTracking(models.Model):
-    ppt_id = models.AutoField(primary_key=True)
-    s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    p_id = models.ForeignKey(ProjectPrimaryInfo, on_delete=models.CASCADE)
-    srs = models.CharField(blank=True, null=True, max_length=200)
-    spmp = models.CharField(blank=True, null=True, max_length=200)
-    release_plan = models.CharField(blank=True, null=True, max_length=200)
-    iteration_plan = models.CharField(blank=True, null=True, max_length=200)
-    system_architecture_design = models.CharField(blank=True, null=True, max_length=200)
-    coding_standard = models.CharField(blank=True, null=True, max_length=200)
-    test_plan = models.CharField(blank=True, null=True, max_length=200)
-    test_case_specification = models.CharField(blank=True, null=True, max_length=200)
-    user_guide = models.CharField(blank=True, null=True, max_length=200)
-    system_video_documentation = models.CharField(blank=True, null=True, max_length=200)
-    video_demonstration = models.CharField(blank=True, null=True, max_length=200)
-    source_code_link = models.CharField(blank=True, null=True, max_length=200)
+# class ProcessProductTracking(models.Model):
+#     ppt_id = models.AutoField(primary_key=True)
+#     s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+#     p_id = models.ForeignKey(ProjectPrimaryInfo, on_delete=models.CASCADE)
+#     srs = models.CharField(blank=True, null=True, max_length=200)
+#     spmp = models.CharField(blank=True, null=True, max_length=200)
+#     release_plan = models.CharField(blank=True, null=True, max_length=200)
+#     iteration_plan = models.CharField(blank=True, null=True, max_length=200)
+#     system_architecture_design = models.CharField(blank=True, null=True, max_length=200)
+#     coding_standard = models.CharField(blank=True, null=True, max_length=200)
+#     test_plan = models.CharField(blank=True, null=True, max_length=200)
+#     test_case_specification = models.CharField(blank=True, null=True, max_length=200)
+#     user_guide = models.CharField(blank=True, null=True, max_length=200)
+#     system_video_documentation = models.CharField(blank=True, null=True, max_length=200)
+#     video_demonstration = models.CharField(blank=True, null=True, max_length=200)
+#     source_code_link = models.CharField(blank=True, null=True, max_length=200)
+#
+#     def __str__(self):
+#         return '%s' % self.ppt_id
+
+
+class DocumentType(models.Model):
+    process_product_type = models.CharField(blank=True, default=None, null=True, max_length=50)
 
     def __str__(self):
-        return '%s' % self.ppt_id
+        return '%s' % self.process_product_type
+
+
+class ProductFile(models.Model):
+    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
+    file_tracking_type = models.ForeignKey(DocumentType, default=None, on_delete=models.CASCADE)
+    product_file = models.FileField(null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.product_file
 
 
 class Comment(models.Model):
     comment_id = models.AutoField(primary_key=True)
-    ppt_id = models.ForeignKey(ProcessProductTracking, on_delete=models.CASCADE)
-    ppt_field = models.CharField(blank=True, null=True, max_length=30)
-    s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    faculty_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
+    process_product_type = models.ForeignKey(DocumentType, on_delete=models.CASCADE)
+    s_id = models.ForeignKey(Student, blank=True, null=True, on_delete=models.CASCADE)
+    faculty_id = models.ForeignKey(Supervisor, blank=True, null=True, on_delete=models.CASCADE)
     comment_title = models.CharField(blank=True, null=True, max_length=500)
     comment = models.CharField(blank=True, null=True, max_length=1000)
 

@@ -1,8 +1,8 @@
 from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
-from .models import Post, Student
-from project.models import Category, ProjectPrimaryInfo, ProcessProductTracking, Comment
+from .models import Post, Student, Values
+from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 # Create your views here.
@@ -24,19 +24,38 @@ def apply_project(request):
     return render(request, 'student/apply_project.html', {'allCategory': allcategory})
 
 
+def insert(request):
+    if request.method == 'POST':
+        save_request_value = request.POST["data"]
+        into_int = int(save_request_value)
+        increased = into_int + 2
+        database_save = Values(user_value=increased)
+        database_save.save()
+    data_value_increased = Values.objects.all()
+    return render(request, 'student/insert.html', {'increased': data_value_increased})
+
+
 def track_project(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
-    all_tracking_info = ProcessProductTracking.objects.filter(s_id=Student.objects.get(email=request.user.email))
+    all_document_type = DocumentType.objects.all()
+    # all_tracking_info = ProcessProductTracking.objects.filter(s_id=Student.objects.get(email=request.user.email))
     all_comment = Comment.objects.all()
 
-    if request.method == 'POST':
-        srs_file = request.FILES['srs']
-        fs = FileSystemStorage()
-        srs_file_name = fs.save(srs_file.name, srs_file)
-        uploaded_srs_file_url = fs.url(srs_file_name)
+    # if request.method == 'POST':
+    #     if request.POST.get(request.FILES['srs']):
+    #         srs_file = request.FILES['srs']
+    #         fs = FileSystemStorage()
+    #         srs_file_name = fs.save(srs_file.name, srs_file)
+    #         uploaded_srs_file_url = fs.url(srs_file_name)
+    #
+    #     if request.POST.get(request.FILES['spmp']):
+    #         spmp_file = request.FILES['spmp']
+    #         fs = FileSystemStorage()
+    #         spmp_file_name = fs.save(spmp_file.name, spmp_file)
+    #         uploaded_spmp_file_url = fs.url(spmp_file_name)
 
     return render(request, 'student/track_project.html',
-                  {'all_basic_info': all_basic_info, 'all_tracking_info': all_tracking_info,
+                  {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
                    'all_comment': all_comment})
 
 

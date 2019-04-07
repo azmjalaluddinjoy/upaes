@@ -63,12 +63,35 @@ height: 3rem; }
                 </div>
                 <!-- Text Body -->
                    <div class="card-body">
-                       {% for process_info in all_tracking_info %}
                            <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
+                            <div class="form-group"><br>
+                            <p>Document Type to be submitted</p>
+                            <select name="category_id" class="form-control">
+
+                            {% for all_document_type in all_document_type %}
+                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
+                            {% endfor %}
+                            </select>
+{#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}
+                            </div>
+                           <div align="" class="submit-block table">
                             <p><b>System Requirement Specification</b></p>
-                            <input type ="file" name="srs">
-                            <button type="submit">Upload File</button>
+                            <input type ="file" class="btn btn-outline-dark btn-sm" name="srs">
+
+                                <button type="submit" class="btn btn-outline-primary">
+                                <span class="text"> Submit File</span>
+                                </button>
+                            </div>
+
+                           <div align="" class="submit-block table">
+                            <p><b>Software Project Management Plan</b></p>
+                            <input type ="file" class="btn btn-outline-dark btn-sm" name="spmp">
+                                <button type="submit" class="btn btn-outline-primary">
+                                <span class="text"> Submit File</span>
+                                </button>
+                            </div>
+
 {#                            {% if uploaded_file_url %}#}
 {#                            <p>srs: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>#}
 {#                            {% endif %}#}
@@ -88,21 +111,6 @@ height: 3rem; }
 {#                            {% endif %}#}
 
                             </form>
-
-                           {{ process_info.srs |linebreaks }}
-                           {{ process_info.spmp |linebreaks }}
-                           {{ process_info.release_plan |linebreaks }}
-                           {{ process_info.iteration_plan |linebreaks }}
-                           {{ process_info.system_architecture_design |linebreaks }}
-                           {{ process_info.coding_standard |linebreaks }}
-                           {{ process_info.test_plan |linebreaks }}
-                           {{ process_info.test_case_specification |linebreaks }}
-                           {{ process_info.user_guide |linebreaks }}
-                           {{ process_info.system_video_documentation |linebreaks }}
-                           {{ process_info.video_demonstration |linebreaks }}
-                           {{ process_info.source_code_link |linebreaks }}
-
-                        {% endfor %}
                    </div>
 
               </div>

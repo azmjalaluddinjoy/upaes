@@ -1,0 +1,59 @@
+{% extends 'student/base_student.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab Final insertion test</title>
+
+
+</head>
+<body>
+{% block page_content %}
+<div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-10 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Apply for Project to be permitted</h6>
+
+                </div>
+                <!-- Text Body -->
+                <div class="card-body">
+                    <div class="supervisor-form">
+
+                        <form name="applyProject" action="/student/insert/" method="post">
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <br>
+                                <input type="text" class="form-control" name="data" placeholder="Insert value" required="required">
+                            </div>
+                                <br>
+                            <div align="center" class="submit-block table">
+                                <button class="btn btn-primary btn-md btn-block>
+                                <span class="text">Save</span>
+                                </button>
+                            </div>
+                        </form>
+                        {% for increased in increased %}
+                            <div class="form-group">
+                                <p>Showing the Data (Adding with 2) </p>
+                                <br>
+                                <input type="text" value="{{ increased }}" class="form-control" name="data_show">
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+              </div>
+            </div>
+
+</div>
+{% endblock %}
+
+</body>
+</html>
