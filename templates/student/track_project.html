@@ -19,6 +19,10 @@ height: 3rem; }
 
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
+                      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <a href="/project/evaluation_sheet/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Basic info pdf generate</a>
+          </div>
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -36,7 +40,7 @@ height: 3rem; }
                          <textarea class="form-control" readonly
                         placeholder="{{ project_basic_info.category}}" name="projectVision" id="projectVision" rows="1" ></textarea>
                      </div>
-                      <div class="form-group"><p>Project Category:</p>
+                      <div class="form-group"><p>Approval status:</p>
                          <textarea class="form-control" readonly
                         placeholder="{{ project_basic_info.approval}}" name="projectVision" id="projectVision" rows="1" ></textarea>
                      </div>
@@ -66,9 +70,8 @@ height: 3rem; }
                            <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group"><br>
-                            <p>Document Type to be submitted</p>
-                            <select name="category_id" class="form-control">
-
+                            <p>Document Type</p>
+                            <select name="document_type" class="form-control">
                             {% for all_document_type in all_document_type %}
                                 <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
                             {% endfor %}
@@ -76,41 +79,20 @@ height: 3rem; }
 {#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}
                             </div>
                            <div align="" class="submit-block table">
-                            <p><b>System Requirement Specification</b></p>
-                            <input type ="file" class="btn btn-outline-dark btn-sm" name="srs">
+                            <p><b>Upload document from here</b></p>
 
+                            <input type ="file" class="btn btn-outline-dark btn-sm" name="product_file">
                                 <button type="submit" class="btn btn-outline-primary">
                                 <span class="text"> Submit File</span>
                                 </button>
                             </div>
-
-                           <div align="" class="submit-block table">
-                            <p><b>Software Project Management Plan</b></p>
-                            <input type ="file" class="btn btn-outline-dark btn-sm" name="spmp">
-                                <button type="submit" class="btn btn-outline-primary">
-                                <span class="text"> Submit File</span>
-                                </button>
-                            </div>
-
-{#                            {% if uploaded_file_url %}#}
-{#                            <p>srs: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>#}
-{#                            {% endif %}#}
-{##}
-{#                           <p><b>Software Project Management Proposal</b></p>#}
-{#                            <input type ="file" name="srs">#}
-{#                            <button type="submit">Upload File</button>#}
-{#                            {% if uploaded_file_url %}#}
-{#                            <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>#}
-{#                            {% endif %}#}
-{##}
-{#                           <p><b>Release Plan</b></p>#}
-{#                            <input type ="file" name="srs">#}
-{#                            <button type="submit">Upload File</button>#}
-{#                            {% if uploaded_file_url %}#}
-{#                            <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>#}
-{#                            {% endif %}#}
-
                             </form>
+                            {%  for product_document in product_document %}
+                                <a class="" href="/media/{{ product_document.product_file }}">
+                                <i class="fa fa-file-pdf fa-3x"></i>
+{#                                  <i class="fas fa-plus-circle fa-chart-area"></i>#}
+                                </a>
+                           {% endfor %}
                    </div>
 
               </div>

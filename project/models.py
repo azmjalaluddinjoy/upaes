@@ -14,6 +14,7 @@ class Category(models.Model):
 
 class ProjectPrimaryInfo(models.Model):
     id = models.AutoField(primary_key=True)
+    s_id = models.ForeignKey(Student, null=True, blank=True, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     approval = models.BooleanField(default=False)
     p_type = models.CharField(max_length=20)  # project or thesis
@@ -60,7 +61,7 @@ class ProductFile(models.Model):
     product_file = models.FileField(null=True, blank=True)
 
     def __str__(self):
-        return '%s' % self.product_file
+        return self.product_file
 
 
 class Comment(models.Model):
@@ -91,11 +92,9 @@ class Evaluation(models.Model):
 
 
 class Supervised(models.Model):
-    supervisor_id = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    p_id = models.ForeignKey(ProjectPrimaryInfo, on_delete=models.CASCADE)
-    s_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    semester = models.CharField(max_length=50)
+    supervisor_id = models.ForeignKey(Supervisor, null=True, blank=True, on_delete=models.CASCADE)
+    s_id = models.ForeignKey(Student, null=True, blank=True,  on_delete=models.CASCADE)
+    semester = models.CharField(max_length=50, null=True, blank=True, )
 
     def __str__(self):
-        return '%s %s %s' % (self.supervisor_id, self.s_id, self.category)
+        return '%s %s' % (self.supervisor_id, self.s_id)

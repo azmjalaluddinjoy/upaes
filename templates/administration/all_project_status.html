@@ -1,3 +1,4 @@
+{% extends 'administration/base.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +22,6 @@ tr:nth-child(even) {
 </style>
     <meta charset="UTF-8">
     <title>All Project Applied</title>
-    {% extends 'administration/base.html' %}
 
 </head>
 <body id="page-top">
@@ -57,7 +57,15 @@ tr:nth-child(even) {
                             <td>{{ all_basic_info.category }}</td>
                             <td>
                                 {{ all_basic_info.approval }}
-                                <button type="button" class="btn btn-info btn-xs">approve</button>
+
+                                 <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group"><br>
+                                <button type="submit" class="btn btn-outline-primary">
+                                <span class="text">Approve</span>
+                                </button>
+                            </div>
+                            </form>
                             </td>
                             <td>{{ all_basic_info.p_type }}</td>
                              <td>{{ all_basic_info.p_description }}</td>

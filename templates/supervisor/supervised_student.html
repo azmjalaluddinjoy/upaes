@@ -1,0 +1,62 @@
+{% extends 'supervisor/base_supervisor.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supervised Student</title>
+
+<style>
+    .file-field.big .file-path-wrapper {
+height: 3.2rem; }
+.file-field.big .file-path-wrapper .file-path {
+height: 3rem; }
+</style>
+</head>
+<body>
+{% block page_content %}
+<div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Supervised Student</h6>
+                </div>
+                <!-- Text Body -->
+                   <div class="card-body">
+                    <table class="table table-striped table-bordered table-hover" id="mydata">
+                       <br> <thead>
+                        <tr>
+                            <th>List</th>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Batch</th>
+                            <th>Project name</th>
+                            <th>Category</th>
+                            <th>Project Type</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        {% for supervised_students in supervised_students %}
+                         <tbody>
+                         <tr>
+                            <td>{{ forloop.counter }} </td>
+                            <td>{{ supervised_students.semester }}</td>
+                            <td>{{ all_basic_info.category }}</td>
+                            <td>{{ all_basic_info.approval }}</td>
+                            <td>{{ all_basic_info.p_type }}</td>
+                             <td>{{ all_basic_info.p_description }}</td>
+                        </tr>
+                         </tbody>
+                             {% endfor %}
+                         </table>
+                   </div>
+                </div>
+            </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

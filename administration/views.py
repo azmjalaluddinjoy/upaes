@@ -15,6 +15,10 @@ def home(request):
 
 def all_project_status(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
+
+    if request.method == 'POST':
+        will_be_changed = ProjectPrimaryInfo.objects.filter(id='1')
+        will_be_changed.approval = 'True'
     return render(request, 'administration/all_project_status.html', {'all_basic_info': all_basic_info})
 
 

@@ -7,15 +7,8 @@ class CategoryAdminView(admin.ModelAdmin):
 
 
 class ProjectPrimaryInfoAdminView(admin.ModelAdmin):
-    list_display = ('id', 'category', 'approval', 'p_type', 'p_name', 'p_description',
+    list_display = ('id', 's_id', 'category', 'approval', 'p_type', 'p_name', 'p_description',
                     'vision', 'charter')
-
-#
-# class ProcessProductTrackingAdminView(admin.ModelAdmin):
-#     list_display = ('ppt_id', 's_id', 'p_id', 'srs', 'spmp', 'release_plan', 'iteration_plan',
-#                     'system_architecture_design', 'coding_standard', 'test_plan',
-#                     'test_case_specification', 'user_guide',
-#                     'system_video_documentation', 'video_demonstration', 'source_code_link')
 
 
 class CommentAdminView(admin.ModelAdmin):
@@ -28,7 +21,7 @@ class EvaluationAdminView(admin.ModelAdmin):
 
 
 class SupervisedAdminView(admin.ModelAdmin):
-    list_display = ('supervisor_id', 'category', 'p_id', 's_id', 'semester')
+    list_display = ('supervisor_id', 's_id', 'semester')
 
 
 class ProductFileAdminView(admin.ModelAdmin):

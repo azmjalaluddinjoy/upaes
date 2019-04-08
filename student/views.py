@@ -1,62 +1,70 @@
 from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Student, Values
-from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType
+from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
+from django.urls import reverse
 # Create your views here.
 from information.models import Districts
 
 
 def home(request):
+    if request.session.get('student_log'):
+        all_post = Post.objects.all()
+        for post in all_post:
+            print(post)
 
-    all_post = Post.objects.all()
-    for post in all_post:
-        print(post)
-
-    return render(request, 'student/home_student.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+        return render(request, 'student/home_student.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+    else:
+        return HttpResponseRedirect('/student/login')
+        # return HttpResponse('User not loged in')
 
 
 def apply_project(request):
-    allcategory = Category.objects.all()
+    if request.session.get('student_log'):
+        allcategory = Category.objects.all()
 
-    return render(request, 'student/apply_project.html', {'allCategory': allcategory})
+        return render(request, 'student/apply_project.html', {'allCategory': allcategory})
 
 
 def insert(request):
-    if request.method == 'POST':
-        save_request_value = request.POST["data"]
-        into_int = int(save_request_value)
-        increased = into_int + 2
-        database_save = Values(user_value=increased)
-        database_save.save()
-    data_value_increased = Values.objects.all()
-    return render(request, 'student/insert.html', {'increased': data_value_increased})
+    if request.session.get('student_log'):
+        if request.method == 'POST':
+            save_request_value = request.POST["data"]
+            into_int = int(save_request_value)
+            increased = into_int + 2
+            database_save = Values(user_value=increased)
+            database_save.save()
+        data_value_increased = Values.objects.all()
+        return render(request, 'student/insert.html', {'increased': data_value_increased})
 
 
 def track_project(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
     all_document_type = DocumentType.objects.all()
-    # all_tracking_info = ProcessProductTracking.objects.filter(s_id=Student.objects.get(email=request.user.email))
-    all_comment = Comment.objects.all()
+    product_document = ProductFile.objects.all()
 
-    # if request.method == 'POST':
-    #     if request.POST.get(request.FILES['srs']):
-    #         srs_file = request.FILES['srs']
-    #         fs = FileSystemStorage()
-    #         srs_file_name = fs.save(srs_file.name, srs_file)
-    #         uploaded_srs_file_url = fs.url(srs_file_name)
-    #
-    #     if request.POST.get(request.FILES['spmp']):
-    #         spmp_file = request.FILES['spmp']
-    #         fs = FileSystemStorage()
-    #         spmp_file_name = fs.save(spmp_file.name, spmp_file)
-    #         uploaded_spmp_file_url = fs.url(spmp_file_name)
+    if request.method == 'POST':
+        if request.session.get('student_log'):
+            document_type = request.POST['document_type']
+            student_id = request.session.get('student_log')
+            file_tracking_type = DocumentType.objects.filter(process_product_type=document_type).first()
+            uploaded_file = request.FILES['product_file']
+            student = get_object_or_404(Student, studentId=student_id)
+            product_file_save_request = ProductFile(student_id=student, file_tracking_type=file_tracking_type,
+                                                    product_file=uploaded_file)
+            product_file_save_request.save()
+    return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
+                                                          'product_document': product_document})
 
-    return render(request, 'student/track_project.html',
-                  {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
-                   'all_comment': all_comment})
+
+def profile(request):
+    if request.session.get('student_log'):
+        student_id = request.session.get('student_log')
+        profile_info = Student.objects.filter(studentId=student_id)
+        return render(request, 'student/profile.html', {'profile_info': profile_info})
 
 
 def authentication(request):
@@ -85,7 +93,6 @@ def registration(request):
 
 
 def add_registered_student(request):
-
     first_name = request.POST["first_name"]
     last_name = request.POST["last_name"]
     student_id = request.POST["studentId"]
@@ -107,21 +114,16 @@ def login_request(request):
 
     m = Student.objects.get(studentId=request.POST['student_id'])
     if m.password == request.POST['student_password']:
-        request.session["student_logged_in"] = m.id
+        request.session['student_log'] = m.studentId
         return HttpResponseRedirect('/student/home/')
     else:
         return HttpResponseRedirect('/student/registration')
 
-    # except Member.DoesNotExist:
-    #         return HttpResponse("Your username and password didn't match.")
 
-
-#     studentId = request.POST["emp_id"]
-#     password = request.POST["password"]
-#     result = Student(studentId == studentId and password == password)
-#     print("joy")
-#     # if result == 1:
-#     #     print("bangla")
-# #    return render(request, "user_info/user_info.html")
-#         return HttpResponseRedirect('/user/info/')
-
+def logged_out(request):
+    if request.session.get('student_log'):
+        del request.session['student_log']
+        return HttpResponseRedirect('/student/login')
+        # return HttpResponse('user loged out')
+    else:
+        return HttpResponse('somthing problem')

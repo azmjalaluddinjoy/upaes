@@ -26,11 +26,6 @@
 
                         <form name="applyProject" action="/project/apply/" method="post">
                             {% csrf_token %}
-{#                    {% for all in supervisors %}#}
-{#                       {{ all |linebreaks }}#}
-{#                    {% endfor %}#}
-
-
                             <div class="form-group"><br>
                             <p>Select your project category</p>
                             <select name="category_id" class="form-control">

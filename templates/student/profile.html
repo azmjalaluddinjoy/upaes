@@ -1,0 +1,62 @@
+{% extends 'student/base_student.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Project</title>
+
+<style>
+    .file-field.big .file-path-wrapper {
+height: 3.2rem; }
+.file-field.big .file-path-wrapper .file-path {
+height: 3rem; }
+</style>
+</head>
+<body>
+
+{% block page_content %}
+<div class="row">
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Profile</h6>
+                </div>
+                   <div class="card-body">
+                       {% for profile_info in profile_info %}
+                         <div class="form-group"><p>Full Name:</p>
+                             <textarea class="form-control" readonly
+                            placeholder="{{ profile_info.first_name}} {{ profile_info.last_name}}" name="projectVision" id="projectVision" rows="1" ></textarea>
+
+                         </div>
+                        <div class="form-group"><p>Student Bearing ID:</p>
+                             <textarea class="form-control" readonly
+                            placeholder="{{ profile_info.studentId}}" name="projectVision" id="projectVision" rows="1" ></textarea>
+
+                         </div>
+                        <div class="form-group"><p>Batch Name:</p>
+                             <textarea class="form-control" readonly
+                            placeholder="{{ profile_info.batch}}" name="projectVision" id="projectVision" rows="1" ></textarea>
+
+                         </div>
+                        <div class="form-group"><p>Semester:</p>
+                             <textarea class="form-control" readonly
+                            placeholder="{{ profile_info.semester}}" name="projectVision" id="projectVision" rows="1" ></textarea>
+
+                         </div>
+                        <div class="form-group"><p>Enrollment Key:</p>
+                             <textarea class="form-control" readonly
+                            placeholder="{{ profile_info.enrollKey}}" name="projectVision" id="projectVision" rows="1" ></textarea>
+
+                         </div>
+
+                       {% endfor %}
+                   </div>
+                </div>
+            </div>
+</div>
+{% endblock %}
+</body>
+</html>
