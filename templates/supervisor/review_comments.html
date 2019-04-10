@@ -1,0 +1,49 @@
+{% extends 'supervisor/base_supervisor.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review & Comments</title>
+
+<style>
+    .file-field.big .file-path-wrapper {
+height: 3.2rem; }
+.file-field.big .file-path-wrapper .file-path {
+height: 3rem; }
+</style>
+</head>
+<body>
+{% block page_content %}
+<div class="row">
+    <!-- Area Chart -->
+    <div class="col-xl-12 col-lg-7">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Review & Comments</h6>
+        </div>
+        <!-- Text Body -->
+           <div class="card-body">
+
+            {% for all_comment in all_comment %}
+               {% if all_comment.s_id %}
+                   <div class="form-group -align-right"><p>Self: <b>{{ all_comment.comment_title }}</b></p>
+                     <textarea class="form-control btn-primary col-lg-offset-2" readonly
+                    placeholder="{{ all_comment.comment}}" name="projectVision" rows="1" cols="3" ></textarea>
+               </div>
+               {% endif %}
+                 {% if all_comment.faculty_id %}
+                   <div class="form-group -align-left"><p>Advisor: <b>{{ all_comment.comment_title }}</b></p>
+                     <textarea class="form-control btn-primary col-lg-offset-2" readonly
+                    placeholder="{{ all_comment.comment}}" name="projectVision" rows="2"></textarea>
+               </div>
+               {% endif %}
+           {% endfor %}
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

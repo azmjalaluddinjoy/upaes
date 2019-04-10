@@ -2,7 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Student, Values
-from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile
+from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile, Supervised
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from django.urls import reverse
@@ -61,9 +61,24 @@ def track_project(request):
 
 
 def process_product_document(request):
-    all_document_type = DocumentType.objects.all()
+    if request.session.get('student_log'):
+        all_document_type = DocumentType.objects.all()
+        if request.method == 'POST':
+            student_id = request.session.get('student_log')
+            document_type = request.POST['document_type']
+            print(document_type)
+            product_information = ProductFile.objects.all()
+            all_comment = Comment.objects.all()
+            # print(advising_comment)
+            return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type,
+                                                                         'product_information': product_information,
+                                                                         'all_comment': all_comment})
 
-    return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
+        # 'student_comment': student_comment,
+        # 'product_document_obj': product_document_obj,
+        # 'document_file ': document_file
+        # 'advising_comment': advising_comment
+        return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
 
 
 def profile(request):

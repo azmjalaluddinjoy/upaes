@@ -57,9 +57,6 @@ tr:nth-child(even) {
                             <td>{{ all_basic_info.category }}</td>
                             <td>
                                 {{ all_basic_info.approval }}
-
-{#                                <h3><a href="{% url 'all_project_status' all_basic_info.pk %}">{{ all_basic_info.approval }}</a></h3>#}
-
                                 <form method="post">
                             {% csrf_token %}
                             <div class="form-group"><br>

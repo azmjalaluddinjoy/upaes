@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', views.logged_out, name='logged_out'),
     path('projects/', views.all_project, name='all_project'),
     path('add_new_type/', views.add_new_type, name='add_new_type'),
+    path('review_comments/', views.review_comment, name='review_comment'),
 
 
 ]

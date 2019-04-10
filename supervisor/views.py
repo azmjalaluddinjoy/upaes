@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Supervisor
-from project.models import Supervised, ProjectPrimaryInfo, DocumentType
+from project.models import Supervised, ProjectPrimaryInfo, DocumentType, ProductFile, Comment
 from student.models import Student
 # Create your views here.
 
@@ -12,7 +12,7 @@ def home(request):
         print(supervisor_id)
         supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
         students = supervisor_object.supervised_set.all()
-        print(students)
+        # print(students)
         # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
         # supervised_students_information = Student.objects.filter(studentId=supervised_students)
         return render(request, 'supervisor/supervised_student.html', {'students': students})
@@ -27,7 +27,7 @@ def add(request):
 
 def all_project(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
-    return render(request, 'supervisor/all_project.html',{'all_basic_info': all_basic_info})
+    return render(request, 'supervisor/all_project.html', {'all_basic_info': all_basic_info})
 
 
 def add_request(request):
@@ -84,3 +84,12 @@ def add_new_type(request):
     return render(request, 'supervisor/add_new_document_type.html')
 
 
+def review_comment(request):
+    if request.session.get('advising_log'):
+        all_document_type = DocumentType.objects.all()
+        product_information = ProductFile.objects.all()
+        all_comment = Comment.objects.all()
+        # print(advising_comment)
+        return render(request, 'supervisor/review_comments.html', {'all_document_type': all_document_type,
+                                                                            'product_information': product_information,
+                                                                            'all_comment': all_comment})

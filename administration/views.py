@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from supervisor.models import Supervisor
 from .models import Administration
 from project.models import ProjectPrimaryInfo
 from student.models import Student
@@ -6,12 +8,18 @@ from student.models import Student
 
 
 def home(request):
-
+    count = ProjectPrimaryInfo.objects.count()
+    all_basic_info = ProjectPrimaryInfo.objects.all()
+    enrolling = Student.objects.count()
+    supervisor_number = Supervisor.objects.count()
+    # count = ProjectPrimaryInfo.objects.annotate(Count('approval'))
     all_info = Administration.objects.all()
     for post in all_info:
         print(post)
 
-    return render(request, 'administration/home.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+    return render(request, 'administration/home.html', {'all_basic_info': all_basic_info, 'name': "Joy Bangla",
+                                                        'district': "Dinajpur",
+                                                        'count': count, 'enrolling': enrolling, 'supervisor_number': supervisor_number})
 
 
 def all_project_status(request):
