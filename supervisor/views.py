@@ -1,17 +1,21 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Supervisor
-from project.models import Supervised
+from project.models import Supervised, ProjectPrimaryInfo, DocumentType
 from student.models import Student
 # Create your views here.
 
 
 def home(request):
-    if request.session.get('supervisor_log'):
-        supervisor_id = request.session.get('supervisor_log')
-        supervised_students = Supervised.objects.filter(supervisor_id=supervisor_id)
+    if request.session.get('advising_log'):
+        supervisor_id = request.session.get('advising_log')
+        print(supervisor_id)
+        supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
+        students = supervisor_object.supervised_set.all()
+        print(students)
+        # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
         # supervised_students_information = Student.objects.filter(studentId=supervised_students)
-        return render(request, 'supervisor/supervised_student.html', {'supervised_students': supervised_students})
+        return render(request, 'supervisor/supervised_student.html', {'students': students})
     else:
         return render(request, 'supervisor/supervised_student.html')
 
@@ -19,6 +23,11 @@ def home(request):
 def add(request):
 
     return render(request, 'supervisor/add_supervisors.html')
+
+
+def all_project(request):
+    all_basic_info = ProjectPrimaryInfo.objects.all()
+    return render(request, 'supervisor/all_project.html',{'all_basic_info': all_basic_info})
 
 
 def add_request(request):
@@ -46,8 +55,11 @@ def login(request):
         faculty_id = Supervisor.objects.get(supervisor_id=request.POST.get('emp_id'))
         if faculty_id.password == request.POST.get('password'):
             request.session['advising_log'] = faculty_id.supervisor_id
-            print(faculty_id)
-            return HttpResponseRedirect('/supervisor/home/')
+            if request.session.get('advising_log'):
+                print('superviser loged in')
+                return HttpResponseRedirect('/supervisor/home/')
+            else:
+                return HttpResponse('session not saved')
         else:
             return HttpResponseRedirect('/supervisor/login/')
     return render(request, 'supervisor/login.html')
@@ -60,5 +72,15 @@ def logged_out(request):
         # return HttpResponse('user loged out')
     else:
         return HttpResponse('somthing problem with login credentials !')
+
+
+def add_new_type(request):
+    if request.session.get('advising_log'):
+        if request.method == 'POST':
+            new_type = request.POST["add_new_document_type"]
+            save_request = DocumentType(process_product_type=new_type)
+            save_request.save()
+            print(new_type)
+    return render(request, 'supervisor/add_new_document_type.html')
 
 

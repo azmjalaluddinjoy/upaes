@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Administration
 from project.models import ProjectPrimaryInfo
+from student.models import Student
 # Create your views here.
 
 
@@ -15,6 +16,8 @@ def home(request):
 
 def all_project_status(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
+    # if request.method == 'GET':
+    #     student_info = Student.objects.get(studentId=pk)
 
     if request.method == 'POST':
         will_be_changed = ProjectPrimaryInfo.objects.filter(id='1')

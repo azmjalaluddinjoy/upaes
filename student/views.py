@@ -60,6 +60,12 @@ def track_project(request):
                                                           'product_document': product_document})
 
 
+def process_product_document(request):
+    all_document_type = DocumentType.objects.all()
+
+    return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
+
+
 def profile(request):
     if request.session.get('student_log'):
         student_id = request.session.get('student_log')

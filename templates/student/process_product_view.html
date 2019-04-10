@@ -1,0 +1,101 @@
+{% extends 'student/base_student.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track Project</title>
+
+<style>
+    .file-field.big .file-path-wrapper {
+height: 3.2rem; }
+.file-field.big .file-path-wrapper .file-path {
+height: 3rem; }
+</style>
+</head>
+<body>
+{% block page_content %}
+<div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-12 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Process & Product Document</h6>
+                </div>
+                <!-- Text Body -->
+                   <div class="card-body">
+                           <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group"><br>
+                            <p>Select your type</p>
+                            <select name="document_type" class="form-control">
+                            {% for all_document_type in all_document_type %}
+                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
+                            {% endfor %}
+                            </select>
+{#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}
+                            </div>
+                           <div align="center" class="submit-block table">
+                                <button type="submit" class="btn btn-outline-primary btn-block">
+                                <span class="text">Show Process & Product Document Information</span>
+                                </button>
+                            </div>
+                            </form>
+{#                   {% for product_document in product_document %}#}
+
+{#                            {%  for product_document in product_document %}#}
+{#                                {% if product_document.product_file %}#}
+{#                                    <p><b>{{ product_document.file_tracking_type }}</b></p>#}
+{#                                        <a class="" href="/media/{{ product_document.product_file }}">#}
+{#                                        <i class="fa fa-file-pdf fa-3x"></i>#}
+{#                                        </a>#}
+{#                                {% endif %}#}
+{#                           {% endfor %}#}
+{#                   {% endfor %}#}
+                   </div>
+              </div>
+
+{#              <div class="card shadow mb-4">#}
+{#                <!-- Card Header - Dropdown -->#}
+{#                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
+{#                  <h6 class="m-0 font-weight-bold text-primary">Project Basic Information</h6>#}
+{##}
+{#                </div>#}
+{#                <!-- Text Body -->#}
+{#                   <div class="card-body">#}
+{#                       {% for project_basic_info in all_basic_info %}#}
+{#                       <div class="form-group"><p>Project Name:</p>#}
+{#                             <textarea class="form-control" readonly#}
+{#                            placeholder="{{ project_basic_info.p_name}}" name="projectVision" id="projectVision" rows="1" ></textarea>#}
+{#                       </div>#}
+{#                       <div class="form-group"><p>Project Category:</p>#}
+{#                         <textarea class="form-control" readonly#}
+{#                        placeholder="{{ project_basic_info.category}}" name="projectVision" id="projectVision" rows="1" ></textarea>#}
+{#                     </div>#}
+{#                      <div class="form-group"><p>Approval status:</p>#}
+{#                         <textarea class="form-control" readonly#}
+{#                        placeholder="{{ project_basic_info.approval}}" name="projectVision" id="projectVision" rows="1" ></textarea>#}
+{#                     </div>#}
+{#                      <div class="form-group"><p>Project description:</p>#}
+{#                         <textarea class="form-control" readonly#}
+{#                        placeholder="{{ project_basic_info.p_description}}" name="projectVision" id="projectVision" rows="4" ></textarea>#}
+{#                     </div>#}
+{#                           <div class="form-group"><p><b>Vision statement:</b></p>#}
+{#                         <textarea class="form-control" readonly#}
+{#                        placeholder="{{ project_basic_info.vision}}" name="projectVision" id="projectVision" rows="4" ></textarea>#}
+{#                     </div>#}
+{#                           <div class="form-group"><p><b>Project Charter:</b></p>#}
+{#                         <textarea class="form-control" readonly#}
+{#                        placeholder="{{ project_basic_info.charter}}" name="projectVision" id="projectVision" rows="3" ></textarea>#}
+{#                     </div>#}
+{#                        {% endfor %}#}
+{#                   </div>#}
+{#                </div>#}
+            </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

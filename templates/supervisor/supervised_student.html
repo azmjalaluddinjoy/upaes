@@ -16,7 +16,6 @@ height: 3rem; }
 <body>
 {% block page_content %}
 <div class="row">
-
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
@@ -30,24 +29,24 @@ height: 3rem; }
                        <br> <thead>
                         <tr>
                             <th>List</th>
+                            <th>Supervisor ID</th>
                             <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Batch</th>
-                            <th>Project name</th>
-                            <th>Category</th>
-                            <th>Project Type</th>
-                            <th>Description</th>
+                            <th>Semester</th>
+{#                            <th>Student Name</th>#}
+{#                            <th>Project name</th>#}
+{#                            <th>Project Type</th>#}
+{#                            <th>Description</th>#}
                         </tr>
                         </thead>
-                        {% for supervised_students in supervised_students %}
+                        {% for student in students %}
                          <tbody>
                          <tr>
                             <td>{{ forloop.counter }} </td>
-                            <td>{{ supervised_students.semester }}</td>
-                            <td>{{ all_basic_info.category }}</td>
-                            <td>{{ all_basic_info.approval }}</td>
-                            <td>{{ all_basic_info.p_type }}</td>
-                             <td>{{ all_basic_info.p_description }}</td>
+                            <td>{{ student.supervisor_id }}</td>
+                            <td>{{ student.s_id }}</td>
+                            <td>{{ student.semester }}</td>
+{#                            <td>{{ supervised_students.p_type }}</td>#}
+{#                             <td>{{ supervised_students.p_description }}</td>#}
                         </tr>
                          </tbody>
                              {% endfor %}

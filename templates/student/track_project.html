@@ -19,10 +19,52 @@ height: 3rem; }
 
             <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
-                      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Process & Product Track </h6>
+                </div>
+                <!-- Text Body -->
+                   <div class="card-body">
+                           <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group"><br>
+                            <p>Document Type</p>
+                            <select name="document_type" class="form-control">
+                            {% for all_document_type in all_document_type %}
+                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
+                            {% endfor %}
+                            </select>
+{#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}
+                            </div>
+                           <div align="" class="submit-block table">
+                            <p><b>Upload document from here</b></p>
+
+                            <input type ="file" class="btn btn-outline-dark btn-sm" name="product_file">
+                                <button type="submit" class="btn btn-outline-primary">
+                                <span class="text"> Submit File</span>
+                                </button>
+                            </div>
+                            </form>
+{#                   {% for product_document in product_document %}#}
+
+{#                            {%  for product_document in product_document %}#}
+{#                                {% if product_document.product_file %}#}
+{#                                    <p><b>{{ product_document.file_tracking_type }}</b></p>#}
+{#                                        <a class="" href="/media/{{ product_document.product_file }}">#}
+{#                                        <i class="fa fa-file-pdf fa-3x"></i>#}
+{#                                        </a>#}
+{#                                {% endif %}#}
+{#                           {% endfor %}#}
+{#                   {% endfor %}#}
+                   </div>
+              </div>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
-            <a href="/project/evaluation_sheet/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Basic info pdf generate</a>
+            <a href="/project/project_basic_info/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Basic info pdf generate</a>
           </div>
+
+
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -58,47 +100,8 @@ height: 3rem; }
                      </div>
                         {% endfor %}
                    </div>
-
                 </div>
-                <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Process & Product Track </h6>
-                </div>
-                <!-- Text Body -->
-                   <div class="card-body">
-                           <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-group"><br>
-                            <p>Document Type</p>
-                            <select name="document_type" class="form-control">
-                            {% for all_document_type in all_document_type %}
-                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
-                            {% endfor %}
-                            </select>
-{#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}
-                            </div>
-                           <div align="" class="submit-block table">
-                            <p><b>Upload document from here</b></p>
-
-                            <input type ="file" class="btn btn-outline-dark btn-sm" name="product_file">
-                                <button type="submit" class="btn btn-outline-primary">
-                                <span class="text"> Submit File</span>
-                                </button>
-                            </div>
-                            </form>
-                            {%  for product_document in product_document %}
-                                <a class="" href="/media/{{ product_document.product_file }}">
-                                <i class="fa fa-file-pdf fa-3x"></i>
-{#                                  <i class="fas fa-plus-circle fa-chart-area"></i>#}
-                                </a>
-                           {% endfor %}
-                   </div>
-
-              </div>
             </div>
-
-
 </div>
 {% endblock %}
 
