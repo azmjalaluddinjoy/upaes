@@ -43,7 +43,6 @@ height: 3rem; }
                             </div>
                             <p>Documents</p>
                            {% for product_information in product_information %}
-{#                       <p><b>{{ product_information.file_tracking_type }}</b></p>#}
                                 {% if product_information.product_file %}
                                         <a class="" href="/media/{{ product_information.product_file }}">
                                         <i class="fa fa-file-pdf fa-3x"></i>

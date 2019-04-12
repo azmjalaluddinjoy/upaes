@@ -66,14 +66,16 @@ def process_product_document(request):
         all_document_type = DocumentType.objects.all()
         if request.method == 'POST':
             student_id = request.session.get('student_log')
+            logged_student = get_object_or_404(Student, studentId=student_id)
             document_type = request.POST['document_type']
-            print(document_type)
-            product_information = ProductFile.objects.all()
-            all_comment = Comment.objects.all()
+            request_type = get_object_or_404(DocumentType, process_product_type=document_type)
+            product_information = ProductFile.objects.filter(file_tracking_type=request_type)
+            student_comment = Comment.objects.filter(s_id=logged_student)
+
             # print(advising_comment)
             return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type,
                                                                          'product_information': product_information,
-                                                                         'all_comment': all_comment})
+                                                                         'all_comment': student_comment})
 
         return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
 
@@ -129,7 +131,6 @@ def add_registered_student(request):
 
 
 def login_request(request):
-
     m = Student.objects.get(studentId=request.POST['student_id'])
     if m.password == request.POST['student_password']:
         request.session['student_log'] = m.studentId

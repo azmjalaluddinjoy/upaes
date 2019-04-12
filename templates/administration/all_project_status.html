@@ -1,5 +1,3 @@
-{% extends 'administration/base.html' %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,63 +19,66 @@ tr:nth-child(even) {
 }
 </style>
     <meta charset="UTF-8">
-    <title>All Project Applied</title>
+    <title>Projects</title>
+    {% extends 'administration/base.html' %}
 
 </head>
 <body id="page-top">
 
 {% block page_content %}
 <div class="row">
-    <div class="supervisor-form">
+<div class="col-xl-12 col-lg-7">
+    <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Student's applied project</h6>
+        </div>
+        <!-- Text Body -->
+        <div class="card-body">
+        <div class="supervisor-form">
         <div class="container">
-            <table class="table table-striped table-bordered table-hover" id="mydata">
-                <h6 class="m-0 font-weight-bold text-primary">Student's applied project List</h6>
-                <br>
-                <thead>
-                <tr>
-                    <th>List</th>
-                    <th>P_name</th>
-                    <th>Category</th>
-                    <th>approval</th>
-                    <th>Project Type</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tfoot>
-                         <tr>
-                        </tr>
-                         </tfoot>
-                        {% for all_basic_info in all_basic_info %}
-                         <tbody>
-                         <tr>
-                            <td>{{ forloop.counter }} </td>
-                            <td>
-                                {{ all_basic_info.p_name }}
-                            </td>
-                            <td>{{ all_basic_info.category }}</td>
-                            <td>
-                                {{ all_basic_info.approval }}
-                                <form method="post">
-                            {% csrf_token %}
-                            <div class="form-group"><br>
-                                <button type="submit" class="btn btn-outline-primary">
-                                <span class="text">Approve</span>
-                                </button>
-                            </div>
-                            </form>
-                            </td>
-                            <td>{{ all_basic_info.p_type }}</td>
-                             <td>{{ all_basic_info.p_description }}</td>
-                        </tr>
-                         </tbody>
-                             {% endfor %}
-                         </table>
-                    </div>
+             <table class="table table-striped table-bordered table-hover" id="mydata">
+           <br> <thead>
+            <tr>
+                <th>List</th>
+                <th>P_name</th>
+                <th>Category</th>
+                <th>Project Type</th>
+                <th>Description</th>
+                <th>Approval status</th>
+                <th>Function</th>
+            </tr>
+            </thead>
 
-                    </div>
-                </div>
+             {% for all_basic_info in all_basic_info %}
+             <tbody>
+             <tr>
+                <td>{{ forloop.counter }} </td>
+                <td>
+                    {{ all_basic_info.p_name }}
+                </td>
+                <td>{{ all_basic_info.category }}</td>
+                <td>{{ all_basic_info.p_type }}</td>
+                 <td>{{ all_basic_info.p_description }}</td>
+                 <td>{{  all_basic_info.approval }}</td>
+                 <td><h3><a class="font-weight-normal center-block" href="{% url 'project' all_basic_info.pk %}"><i class="fas fa-check-circle fa-1x center-block"></i></a></h3></td>
+            </tr>
+             </tbody>
+                 {% endfor %}
+             </table>
+
+
+
+
+
+
+        </div>
+            </div>
+        </div>
+      </div>
+``</div>
+</div>
 {% endblock %}
-
 
 </body>
 </html>

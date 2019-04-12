@@ -25,11 +25,26 @@ height: 3rem; }
                 </div>
                 <!-- Text Body -->
                    <div class="card-body">
+                   <table class="table table-striped table-bordered table-hover" id="mydata">
+                    <thead>
+                    <tr>
+                        <th>Teacher Name </th>
+                        <th>Teacher/ supervisor/ external Id</th>
+                    </tr>
+                    </thead>
+                   <tbody>
+                   <tr>
+                       <td><a href="/supervisor/profile/">{{ supervisor_profile_info.faculty_name }}</a></td>
+                       <td><a href="/supervisor/profile/">{{ supervisor_profile_info.supervisor_id }}</a></td>
+                   </tr>
+                   </tbody>
+                   </table><br>
+
                     <table class="table table-striped table-bordered table-hover" id="mydata">
+                    <h4 class="align-self-md-center">Supervising Student List</h4>
                        <br> <thead>
                         <tr>
                             <th>List</th>
-                            <th>Supervisor ID</th>
                             <th>Student ID</th>
                             <th>Semester</th>
 {#                            <th>Student Name</th>#}
@@ -42,7 +57,6 @@ height: 3rem; }
                          <tbody>
                          <tr>
                             <td>{{ forloop.counter }} </td>
-                            <td>{{ student.supervisor_id }}</td>
                             <td>{{ student.s_id }}</td>
                             <td>{{ student.semester }}</td>
 {#                            <td>{{ supervised_students.p_type }}</td>#}

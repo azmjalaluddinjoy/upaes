@@ -9,15 +9,17 @@ from student.models import Student
 def home(request):
     if request.session.get('advising_log'):
         supervisor_id = request.session.get('advising_log')
-        print(supervisor_id)
         supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
+        # supervisor_profile_info = Supervisor.objects.filter(supervisor_id=supervisor_object)
+        print(supervisor_object.faculty_name)
         students = supervisor_object.supervised_set.all()
-        # print(students)
+        print(students)
         # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
         # supervised_students_information = Student.objects.filter(studentId=supervised_students)
-        return render(request, 'supervisor/supervised_student.html', {'students': students})
+        return render(request, 'supervisor/supervised_student.html', {'students': students,
+                                                                      'supervisor_profile_info': supervisor_object})
     else:
-        return render(request, 'supervisor/supervised_student.html')
+        return HttpResponseRedirect('/supervisor/login')
 
 
 def add(request):
@@ -56,7 +58,6 @@ def login(request):
         if faculty_id.password == request.POST.get('password'):
             request.session['advising_log'] = faculty_id.supervisor_id
             if request.session.get('advising_log'):
-                print('superviser loged in')
                 return HttpResponseRedirect('/supervisor/home/')
             else:
                 return HttpResponse('session not saved')
@@ -93,3 +94,10 @@ def review_comment(request):
         return render(request, 'supervisor/review_comments.html', {'all_document_type': all_document_type,
                                                                             'product_information': product_information,
                                                                             'all_comment': all_comment})
+
+
+def profile(request):
+    if request.session.get('advising_log'):
+        supervisor_id = request.session.get('advising_log')
+        profile_info = Supervisor.objects.filter(supervisor_id=supervisor_id)
+        return render(request, 'supervisor/profile.html', {'profile_info': profile_info})

@@ -22,11 +22,20 @@ def home(request):
                                                         'count': count, 'enrolling': enrolling, 'supervisor_number': supervisor_number})
 
 
+def project(request, project_id):
+    all_primary_info = ProjectPrimaryInfo.objects.get(pk=project_id)
+    if all_primary_info.approval == False:
+        # all_primary_info.approval = True
+        # print(all_primary_info.approval)
+        save_request = ProjectPrimaryInfo(approval=True)
+        save_request.save()
+    return render(request, 'administration/all_project_status.html')
+
+
 def all_project_status(request):
     all_basic_info = ProjectPrimaryInfo.objects.all()
     # if request.method == 'GET':
     #     student_info = Student.objects.get(studentId=pk)
-
     if request.method == 'POST':
         will_be_changed = ProjectPrimaryInfo.objects.filter(id='1')
         will_be_changed.approval = 'True'
