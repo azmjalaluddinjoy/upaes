@@ -44,8 +44,10 @@ height: 3rem; }
                             <p>Documents</p>
                            {% for product_information in product_information %}
                                 {% if product_information.product_file %}
-                                        <a class="" href="/media/{{ product_information.product_file }}">
-                                        <i class="fa fa-file-pdf fa-3x"></i>
+                                        <embed src="/media/{{ product_information.product_file }}" type="application/pdf" height="210px" width="150">
+                                        <a class="badge badge-pill badge-primary fas fa-eye" href="/media/{{ product_information.product_file }}">
+                                        <i class=""></i><span class="badge badge-pill badge-primary">{{ forloop.counter }}</span>
+{#                                        fa fa-file-pdf fa-3x<i class="fas fa-eye"></i>#}
                                         </a>
                                 {% endif %}
                             {% endfor %}

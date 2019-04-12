@@ -24,11 +24,10 @@ def home(request):
 
 def project(request, project_id):
     all_primary_info = ProjectPrimaryInfo.objects.get(pk=project_id)
-    if all_primary_info.approval == False:
+    if all_primary_info.approval == 'False':
         # all_primary_info.approval = True
+        all_primary_info.approval.update(True)
         # print(all_primary_info.approval)
-        save_request = ProjectPrimaryInfo(approval=True)
-        save_request.save()
     return render(request, 'administration/all_project_status.html')
 
 
