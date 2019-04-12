@@ -42,21 +42,22 @@ def insert(request):
 
 
 def track_project(request):
-    all_basic_info = ProjectPrimaryInfo.objects.all()
-    all_document_type = DocumentType.objects.all()
-    product_document = ProductFile.objects.all()
-
-    if request.method == 'POST':
-        if request.session.get('student_log'):
+    if request.session.get('student_log'):
+        student_id = request.session.get('student_log')
+        student = get_object_or_404(Student, studentId=student_id)
+        all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
+        all_document_type = DocumentType.objects.all()
+        product_document = ProductFile.objects.all()
+        if request.method == 'POST':
             document_type = request.POST['document_type']
             student_id = request.session.get('student_log')
             file_tracking_type = DocumentType.objects.filter(process_product_type=document_type).first()
             uploaded_file = request.FILES['product_file']
-            student = get_object_or_404(Student, studentId=student_id)
+            # student = get_object_or_404(Student, studentId=student_id)
             product_file_save_request = ProductFile(student_id=student, file_tracking_type=file_tracking_type,
                                                     product_file=uploaded_file)
             product_file_save_request.save()
-    return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
+        return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
                                                           'product_document': product_document})
 
 
@@ -74,10 +75,6 @@ def process_product_document(request):
                                                                          'product_information': product_information,
                                                                          'all_comment': all_comment})
 
-        # 'student_comment': student_comment,
-        # 'product_document_obj': product_document_obj,
-        # 'document_file ': document_file
-        # 'advising_comment': advising_comment
         return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
 
 
