@@ -20,5 +20,4 @@ class Supervisor(models.Model):
 
     def __str__(self):
         return '%s' % self.supervisor_id
-        # return '%s %s %s %s' % (self.supervisor_id, self.faculty_name, self.designation, self.email)
 

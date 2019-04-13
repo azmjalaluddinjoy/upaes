@@ -14,7 +14,9 @@ def home(request):
     if request.session.get('student_log'):
         student_id = request.session.get('student_log')
         student = get_object_or_404(Student, studentId=student_id)
+        approval_status = 'You did not applied yet !'
         this_student_project_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
+        # if this_student_project_basic_info is not False:
         for project_basic in this_student_project_basic_info:
             if project_basic.approval is False:
                 approval_status = 'Pending'
