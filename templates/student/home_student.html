@@ -14,11 +14,24 @@
 {% block page_content %}
 <div class="row">
     <div class="col-xl-12 col-lg-7">
+        {% if approval_status != 'Eligible'%}
+                <div class="alert alert-danger alert-dismissible">
+                 <strong>Status : Pending project ! please contact with the authority</strong>
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            {% endif %}
+
+         {% if approval_status == 'Eligible'%}
+                <div class="alert alert-success alert-dismissible">
+                 <strong>Eligible project : Your all functionality is activated</strong>
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            {% endif %}
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Approval Status: {{ approval_status }} Project</h6>
-        </div>
-            <div class="card-body">
+            <h6 class="m-0 font-weight-bold text-primary">Home page</h6>
+            </div>
+                <div class="card-body">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">

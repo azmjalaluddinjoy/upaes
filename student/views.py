@@ -53,22 +53,26 @@ def track_project(request):
         for project_basic in all_basic_info:
             if project_basic.approval is True:
                 approval_status = 'Eligible'
-
+                all_document_type = DocumentType.objects.all()
+                product_document = ProductFile.objects.all()
+                if request.method == 'POST':
+                    document_type = request.POST['document_type']
+                    student_id = request.session.get('student_log')
+                    file_tracking_type = DocumentType.objects.filter(process_product_type=document_type).first()
+                    uploaded_file = request.FILES['product_file']
+                    # student = get_object_or_404(Student, studentId=student_id)
+                    product_file_save_request = ProductFile(student_id=student, file_tracking_type=file_tracking_type,
+                                                            product_file=uploaded_file)
+                    product_file_save_request.save()
+                return render(request, 'student/track_project.html',
+                                  {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
+                                   'product_document': product_document, 'approval_status': approval_status})
             else:
-                approval_status = 'Pending'
-        all_document_type = DocumentType.objects.all()
-        product_document = ProductFile.objects.all()
-        if request.method == 'POST':
-            document_type = request.POST['document_type']
-            student_id = request.session.get('student_log')
-            file_tracking_type = DocumentType.objects.filter(process_product_type=document_type).first()
-            uploaded_file = request.FILES['product_file']
-            # student = get_object_or_404(Student, studentId=student_id)
-            product_file_save_request = ProductFile(student_id=student, file_tracking_type=file_tracking_type,
-                                                    product_file=uploaded_file)
-            product_file_save_request.save()
-        return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
-                                                          'product_document': product_document})
+                approval_status = 'Not eligible'
+                return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info,
+                                                                      'approval_status': approval_status})
+
+        return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info})
 
 
 def process_product_document(request):

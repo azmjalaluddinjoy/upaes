@@ -22,13 +22,14 @@ height: 3rem; }
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Process & Product Track </h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Upload Process & Product Documents </h6>
                 </div>
                 <!-- Text Body -->
                    <div class="card-body">
                            <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                             <div class="form-group"><br>
+                            {% if approval_status == 'Eligible' %}
                             <p>Document Type</p>
                             <select name="document_type" class="form-control">
                             {% for all_document_type in all_document_type %}
@@ -39,11 +40,19 @@ height: 3rem; }
                             </div>
                            <div align="" class="submit-block table">
                             <p><b>Upload document from here</b></p>
-
                             <input type ="file" class="btn btn-outline-dark btn-sm" name="product_file">
                                 <button type="submit" class="btn btn-outline-primary">
                                 <span class="text"> Submit File</span>
                                 </button>
+                            {% endif %}
+
+                            {% if approval_status != 'Eligible'%}
+
+                                <div class="alert alert-danger alert-dismissible">
+                                 <strong>Status : Pending project ! please contact with the authority</strong>
+                                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                </div>
+                            {% endif %}
                             </div>
                             </form>
                    </div>
