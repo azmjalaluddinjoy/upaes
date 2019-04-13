@@ -12,11 +12,15 @@ from information.models import Districts
 
 def home(request):
     if request.session.get('student_log'):
-        all_post = Post.objects.all()
-        for post in all_post:
-            print(post)
-
-        return render(request, 'student/home_student.html', {'name': "Joy Bangla", 'district': "Dinajpur"})
+        student_id = request.session.get('student_log')
+        student = get_object_or_404(Student, studentId=student_id)
+        this_student_project_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
+        for project_basic in this_student_project_basic_info:
+            if project_basic.approval is False:
+                approval_status = 'Pending'
+            else:
+                approval_status = 'Eligible'
+        return render(request, 'student/home_student.html', {'approval_status': approval_status})
     else:
         return HttpResponseRedirect('/student/login')
         # return HttpResponse('User not loged in')
@@ -46,6 +50,12 @@ def track_project(request):
         student_id = request.session.get('student_log')
         student = get_object_or_404(Student, studentId=student_id)
         all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
+        for project_basic in all_basic_info:
+            if project_basic.approval is True:
+                approval_status = 'Eligible'
+
+            else:
+                approval_status = 'Pending'
         all_document_type = DocumentType.objects.all()
         product_document = ProductFile.objects.all()
         if request.method == 'POST':
