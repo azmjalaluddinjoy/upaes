@@ -3,6 +3,7 @@ from supervisor import views
 
 
 urlpatterns = [
+    path('task_assign/<student_pk>/', views.task_assign, name='task_assign'),
     path('home/', views.home, name='supervisor_home'),
     path('add/', views.add, name='supervisor_add'),
     path('add_request/', views.add_request, name='add_request'),
@@ -13,6 +14,5 @@ urlpatterns = [
     path('add_new_type/', views.add_new_type, name='add_new_type'),
     path('review_comments/', views.review_comment, name='review_comment'),
     path('profile/', views.profile, name='profile'),
-
 
 ]

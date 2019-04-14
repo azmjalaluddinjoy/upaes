@@ -11,15 +11,26 @@ def home(request):
         supervisor_id = request.session.get('advising_log')
         supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
         # supervisor_profile_info = Supervisor.objects.filter(supervisor_id=supervisor_object)
-        print(supervisor_object.faculty_name)
         students = supervisor_object.supervised_set.all()
-        print(students)
         # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
         # supervised_students_information = Student.objects.filter(studentId=supervised_students)
         return render(request, 'supervisor/supervised_student.html', {'students': students,
                                                                       'supervisor_profile_info': supervisor_object})
     else:
         return HttpResponseRedirect('/supervisor/login')
+
+
+def task_assign(request, student_pk):
+    supervised_info = Supervised.objects.get(pk=student_pk)
+    student_info = get_object_or_404(Student, studentId=supervised_info.s_id)
+    all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student_info)
+    task_type = DocumentType.objects.all()
+    # student_from = supervised_info.s_id
+    # student = get_object_or_404(Student, studentId=student_from)
+    return render(request, 'supervisor/task_assign.html', {'supervised_info': supervised_info,
+                                                           'student_info': student_info,
+                                                           'task_type': task_type,
+                                                           'all_basic_info': all_basic_info})
 
 
 def add(request):

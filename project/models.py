@@ -98,3 +98,10 @@ class Supervised(models.Model):
 
     def __str__(self):
         return '%s' % self.s_id
+
+
+# class Task(models.Model):
+#     task_name = models.ForeignKey(DocumentType, null=False, blank=False, on_delete=models.CASCADE)
+#     student = models.ForeignKey(Student, null=False, blank=False, on_delete=models.CASCADE)
+#     marks = models.IntegerField(blank=True, null=True, default=0)
+
