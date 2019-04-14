@@ -9,8 +9,14 @@ from student.models import Student
 
 
 def home(request):
-    count = ProjectPrimaryInfo.objects.count()
+    count = 0
+    total_project = 0
     all_basic_info = ProjectPrimaryInfo.objects.all()
+    for primary_object in all_basic_info:
+        if primary_object.approval is False:
+            count = 1 + count
+        if primary_object.id:
+            total_project = 1 + total_project
     enrolling = Student.objects.count()
     supervisor_number = Supervisor.objects.count()
     # count = ProjectPrimaryInfo.objects.annotate(Count('approval'))
@@ -19,7 +25,7 @@ def home(request):
         print(post)
 
     return render(request, 'administration/home.html', {'all_basic_info': all_basic_info, 'name': "Joy Bangla",
-                                                        'district': "Dinajpur",
+                                                        'district': "Dinajpur", 'total_project': total_project,
                                                         'count': count, 'enrolling': enrolling, 'supervisor_number': supervisor_number})
 
 
