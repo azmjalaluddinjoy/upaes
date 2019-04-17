@@ -1,6 +1,7 @@
 from django.db import models
 from student.models import Student
 from supervisor.models import Supervisor
+from django.utils.timezone import now
 # Create your models here.
 
 
@@ -100,8 +101,14 @@ class Supervised(models.Model):
         return '%s' % self.s_id
 
 
-# class Task(models.Model):
-#     task_name = models.ForeignKey(DocumentType, null=False, blank=False, on_delete=models.CASCADE)
-#     student = models.ForeignKey(Student, null=False, blank=False, on_delete=models.CASCADE)
-#     marks = models.IntegerField(blank=True, null=True, default=0)
+class Task(models.Model):
+    task_name = models.ForeignKey(DocumentType, null=False, blank=False, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, null=False, blank=False, on_delete=models.CASCADE)
+    marks_allocated = models.IntegerField(blank=True, null=True, default=10)
+    marks_allowed = models.IntegerField(blank=True, null=True, default=0)
+    created_date = models.DateTimeField(auto_now_add=True)
+    deadline = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return '%s' % self.task_name
 

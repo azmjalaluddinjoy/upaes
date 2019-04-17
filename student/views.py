@@ -131,7 +131,7 @@ def registration(request):
 def add_registered_student(request):
     first_name = request.POST["first_name"]
     last_name = request.POST["last_name"]
-    student_id = request.POST["studentId"]
+    student_id = request.POS0T["studentId"]
     batch = request.POST["batch"]
     semester = request.POST["semester"]
     enroll_key = request.POST["enrollKey"]

@@ -1,7 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Supervisor
-from project.models import Supervised, ProjectPrimaryInfo, DocumentType, ProductFile, Comment
+from project.models import Supervised, ProjectPrimaryInfo, DocumentType, ProductFile, Comment, Task
 from student.models import Student
 # Create your views here.
 
@@ -25,12 +25,22 @@ def task_assign(request, student_pk):
     student_info = get_object_or_404(Student, studentId=supervised_info.s_id)
     all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student_info)
     task_type = DocumentType.objects.all()
+    all_assigned_task = Task.objects.filter(student=student_info)
+    if request.method == 'POST':
+        assigned_task = request.POST['task_type']
+        # student = student_info.studentId
+        marks_allocated = request.POST['marks_allocated']
+        deadline = request.POST['deadline']
+        task_request_type = get_object_or_404(DocumentType, process_product_type=assigned_task)
+        task_save_request = Task(task_name=task_request_type, student=student_info, marks_allocated=marks_allocated, deadline=deadline)
+        task_save_request.save()
     # student_from = supervised_info.s_id
     # student = get_object_or_404(Student, studentId=student_from)
     return render(request, 'supervisor/task_assign.html', {'supervised_info': supervised_info,
                                                            'student_info': student_info,
                                                            'task_type': task_type,
-                                                           'all_basic_info': all_basic_info})
+                                                           'all_basic_info': all_basic_info,
+                                                           'all_assigned_task': all_assigned_task})
 
 
 def add(request):
