@@ -11,8 +11,6 @@ def home(request):
         supervisor_id = request.session.get('advising_log')
         supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
         students = supervisor_object.supervised_set.all()
-        # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
-        # supervised_students_information = Student.objects.filter(studentId=supervised_students)
         return render(request, 'supervisor/supervised_student.html', {'students': students,
                                                                       'supervisor_profile_info': supervisor_object})
     else:
@@ -32,8 +30,6 @@ def task_assign(request, student_pk):
         task_request_type = get_object_or_404(DocumentType, process_product_type=assigned_task)
         task_save_request = Task(task_name=task_request_type, student=student_info, marks_allocated=marks_allocated, deadline=deadline)
         task_save_request.save()
-    # student_from = supervised_info.s_id
-    # student = get_object_or_404(Student, studentId=student_from)
     return render(request, 'supervisor/task_assign.html', {'supervised_info': supervised_info,
                                                            'student_info': student_info,
                                                            'task_type': task_type,
@@ -42,9 +38,7 @@ def task_assign(request, student_pk):
 
 
 def evaluation(request, student_pk):
-    # task_object = Task.objects.filter(pk=task_pk)
     task_info = Task.objects.get(pk=student_pk)
-    product_this_student = ProductFile.objects.all()
     if ProductFile.objects.filter(student_id=task_info.student):
         if ProductFile.objects.filter(file_tracking_type=task_info.task_name):
             product_this = ProductFile.objects.filter(file_tracking_type=task_info.task_name)

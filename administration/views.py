@@ -19,7 +19,6 @@ def home(request):
             total_project = 1 + total_project
     enrolling = Student.objects.count()
     supervisor_number = Supervisor.objects.count()
-    # count = ProjectPrimaryInfo.objects.annotate(Count('approval'))
     all_info = Administration.objects.all()
     for post in all_info:
         print(post)
