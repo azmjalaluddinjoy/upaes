@@ -28,7 +28,6 @@ def task_assign(request, student_pk):
     all_assigned_task = Task.objects.filter(student=student_info)
     if request.method == 'POST':
         assigned_task = request.POST['task_type']
-        # student = student_info.studentId
         marks_allocated = request.POST['marks_allocated']
         deadline = request.POST['deadline']
         task_request_type = get_object_or_404(DocumentType, process_product_type=assigned_task)

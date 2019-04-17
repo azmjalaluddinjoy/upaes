@@ -2,7 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Student, Values
-from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile, Supervised
+from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile, Supervised, Task
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from django.urls import reverse
@@ -12,17 +12,25 @@ from information.models import Districts
 
 def home(request):
     if request.session.get('student_log'):
+        new_task = 'Nill'
         student_id = request.session.get('student_log')
         student = get_object_or_404(Student, studentId=student_id)
         approval_status = 'You did not applied yet !'
         this_student_project_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
         # if this_student_project_basic_info is not False:
+        assigned_work = Task.objects.filter(student=student)
+        for assigned_work in assigned_work:
+            if assigned_work.task_name:
+                new_task = assigned_work
+                print(assigned_work.task_name)
+                print(assigned_work.deadline)
         for project_basic in this_student_project_basic_info:
             if project_basic.approval is False:
                 approval_status = 'Pending'
             else:
                 approval_status = 'Eligible'
-        return render(request, 'student/home_student.html', {'approval_status': approval_status})
+        return render(request, 'student/home_student.html', {'approval_status': approval_status,
+                                                             'new_task': new_task})
     else:
         return HttpResponseRedirect('/student/login')
         # return HttpResponse('User not loged in')
