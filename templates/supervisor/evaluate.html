@@ -39,17 +39,40 @@ tr:nth-child(even) {
         </div>
         <!-- Text Body -->
            <div class="col-xl-12 card-body">
-           <p>Supervisor:</p>
+{#           {% for task_info in task_info %}#}
+           <table class="table table-striped table-bordered table-hover" id="mydata">
+                       <br> <thead>
+                        <tr>
+                            <th>Marks Allowed</th>
+                            <th>Marks Allocated (out of)</th>
+                        </tr>
+                        </thead>
+                         <tbody>
+                         <tr>
+                             <td>{{ task_info.marks_allowed }}</td>
+                            <td>{{ task_info.marks_allocated }}</td>
+                        </tr>
+                         </tbody>
+           </table>
 
+           <form name="evaluation_update"  method="post">
             {% csrf_token %}
-
-           <div align="center" class="submit-block table">
+           <input type="number" class="form-control" name="marks_allowed" placeholder="Evaluate (Eg. 5 / 10 )" id="projectVision">
+           <br><div align="center" class="submit-block table">
                 <button class="btn btn-outline-primary btn-md btn-block"><i class="fas fa-check"></i>
                 <span class="text">Save</span>
                 </button>
             </div>
-
            </form>
+           <p>Documents</p>
+               {% for product_information in product_information %}
+                    {% if product_information.product_file %}
+                            <embed src="/media/{{ product_information.product_file }}" type="application/pdf" height="210px" width="150">
+                            <a class="badge badge-pill badge-primary fas fa-eye" href="/media/{{ product_information.product_file }}">
+                            <i class=""></i><span class="badge badge-pill badge-primary">{{ forloop.counter }}</span>
+                            </a>
+                    {% endif %}
+                {% endfor %}
            </div>
         </div>
     </div>

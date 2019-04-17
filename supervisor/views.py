@@ -44,9 +44,16 @@ def task_assign(request, student_pk):
 def evaluation(request, student_pk):
     # task_object = Task.objects.filter(pk=task_pk)
     task_info = Task.objects.get(pk=student_pk)
-
-    print(task_info.task_name)
-    print(student_pk)
+    product_this_student = ProductFile.objects.all()
+    if ProductFile.objects.filter(student_id=task_info.student):
+        if ProductFile.objects.filter(file_tracking_type=task_info.task_name):
+            product_this = ProductFile.objects.filter(file_tracking_type=task_info.task_name)
+            if request.method == 'POST':
+                marks_allowed = request.POST['marks_allowed']
+                task_info.marks_allowed = marks_allowed
+                task_info.save()
+            return render(request, 'supervisor/evaluate.html', {'product_information': product_this,
+                                                                'task_info': task_info})
 
     return render(request, 'supervisor/evaluate.html')
 

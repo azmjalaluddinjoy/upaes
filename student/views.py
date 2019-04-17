@@ -75,7 +75,6 @@ def track_project(request):
                     student_id = request.session.get('student_log')
                     file_tracking_type = DocumentType.objects.filter(process_product_type=document_type).first()
                     uploaded_file = request.FILES['product_file']
-                    # student = get_object_or_404(Student, studentId=student_id)
                     product_file_save_request = ProductFile(student_id=student, file_tracking_type=file_tracking_type,
                                                             product_file=uploaded_file)
                     product_file_save_request.save()
