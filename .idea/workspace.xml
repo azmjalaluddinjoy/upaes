@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bdd2349-096f-42dd-9ef9-ba2e685444f0" name="Default Changelist" comment="" />
+    <list default="true" id="0bdd2349-096f-42dd-9ef9-ba2e685444f0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/base_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/base_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student/home_student.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student/home_student.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/supervisor/base_supervisor.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/supervisor/base_supervisor.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,22 +23,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/administration/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/supervisor/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+            <state relative-caret-position="60">
+              <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -41,44 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/supervisor/evaluate.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/student/home_student.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/student/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-157">
-              <caret line="76" column="65" selection-start-line="76" selection-start-column="65" selection-end-line="76" selection-end-column="65" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="106" column="19" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/supervisor/supervised_student.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-83">
-              <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+            <state relative-caret-position="307">
+              <caret line="27" column="144" selection-start-line="27" selection-start-column="144" selection-end-line="27" selection-end-column="144" />
             </state>
           </provider>
         </entry>
@@ -96,7 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>project de</find>
       <find>Revenue sources</find>
       <find>dashboard</find>
       <find>Projects</find>
@@ -126,6 +85,7 @@
       <find>profile</find>
       <find>all_basic_info</find>
       <find>set</find>
+      <find>assign Task</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -166,10 +126,8 @@
         <option value="$PROJECT_DIR$/project/views.py" />
         <option value="$PROJECT_DIR$/student/urls.py" />
         <option value="$PROJECT_DIR$/templates/supervisor/add_new_document_type.html" />
-        <option value="$PROJECT_DIR$/templates/student/base_student.html" />
         <option value="$PROJECT_DIR$/templates/supervisor/review_comments.html" />
         <option value="$PROJECT_DIR$/templates/supervisor/all_project.html" />
-        <option value="$PROJECT_DIR$/templates/supervisor/base_supervisor.html" />
         <option value="$PROJECT_DIR$/templates/supervisor/profile.html" />
         <option value="$PROJECT_DIR$/administration/urls.py" />
         <option value="$PROJECT_DIR$/templates/supervisor/supervisor_list.html" />
@@ -178,19 +136,21 @@
         <option value="$PROJECT_DIR$/templates/administration/all_project_status.html" />
         <option value="$PROJECT_DIR$/templates/student/profile.html" />
         <option value="$PROJECT_DIR$/templates/student/apply_project.html" />
-        <option value="$PROJECT_DIR$/administration/views.py" />
         <option value="$PROJECT_DIR$/templates/administration/home.html" />
         <option value="$PROJECT_DIR$/project/models.py" />
         <option value="$PROJECT_DIR$/project/admin.py" />
-        <option value="$PROJECT_DIR$/templates/student/home_student.html" />
         <option value="$PROJECT_DIR$/templates/student/process_product_view.html" />
         <option value="$PROJECT_DIR$/templates/student/track_project.html" />
         <option value="$PROJECT_DIR$/supervisor/urls.py" />
-        <option value="$PROJECT_DIR$/templates/supervisor/supervised_student.html" />
         <option value="$PROJECT_DIR$/templates/supervisor/task_assign.html" />
         <option value="$PROJECT_DIR$/student/views.py" />
         <option value="$PROJECT_DIR$/templates/supervisor/evaluate.html" />
         <option value="$PROJECT_DIR$/supervisor/views.py" />
+        <option value="$PROJECT_DIR$/templates/supervisor/supervised_student.html" />
+        <option value="$PROJECT_DIR$/administration/views.py" />
+        <option value="$PROJECT_DIR$/templates/student/base_student.html" />
+        <option value="$PROJECT_DIR$/templates/supervisor/base_supervisor.html" />
+        <option value="$PROJECT_DIR$/templates/student/home_student.html" />
       </list>
     </option>
   </component>
@@ -216,7 +176,19 @@
             <path>
               <item name="upaes" type="b2602c69:ProjectViewProjectNode" />
               <item name="upaes" type="462c0819:PsiDirectoryNode" />
-              <item name="administration" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="upaes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="upaes" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="student" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="upaes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="upaes" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="supervisor" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -391,12 +363,12 @@
       <workItem from="1555181227146" duration="9639000" />
       <workItem from="1555257022823" duration="14410000" />
       <workItem from="1555353360329" duration="820000" />
-      <workItem from="1555503533351" duration="20599000" />
+      <workItem from="1555503533351" duration="21483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359746000" />
+    <option name="totallyTimeSpent" value="360630000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,8 +381,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="47" y="25" width="1319" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7330416" visible="true" weight="0.24666142" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7330416" visible="true" weight="0.24666142" />
       <window_info id="Structure" order="1" sideWeight="0.26695842" side_tool="true" visible="true" weight="0.24666142" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -424,7 +397,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32767403" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.51531816" side_tool="true" weight="0.34634975" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.48232523" visible="true" weight="0.22410867" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.48232523" visible="true" weight="0.22410867" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.3293718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -534,13 +507,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project/migrations/0001_initial.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="27" column="27" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/project/upload.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -610,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/student/base_student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="102" column="11" selection-start-line="102" selection-start-column="11" selection-end-line="102" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/supervisor/review_comments.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -643,13 +602,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/project/basic_info.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supervisor/base_supervisor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="89" column="44" lean-forward="true" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/supervisor/supervisor_list.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -787,13 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/student/home_student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="18" column="47" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/student/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -831,33 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/student/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-157">
-          <caret line="76" column="65" selection-start-line="76" selection-start-column="65" selection-end-line="76" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/administration/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="40" column="31" lean-forward="true" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supervisor/supervised_student.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-83">
-          <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/supervisor/task_assign.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -865,30 +783,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supervisor/evaluate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-74">
+          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/student/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2309">
+          <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="106" column="19" selection-start-line="106" selection-start-column="4" selection-end-line="106" selection-end-column="19" />
+        <state relative-caret-position="255">
+          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/supervisor/evaluate.html">
+    <entry file="file://$PROJECT_DIR$/administration/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="57" column="40" selection-start-line="57" selection-start-column="40" selection-end-line="57" selection-end-column="40" />
+        <state relative-caret-position="361">
+          <caret line="58" column="32" lean-forward="true" selection-start-line="58" selection-start-column="32" selection-end-line="58" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/student/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/student/base_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="69" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supervisor/base_supervisor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="91" column="51" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/supervisor/supervised_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/supervisor/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="51" column="61" selection-start-line="51" selection-start-column="61" selection-end-line="51" selection-end-column="61" />
+        <state relative-caret-position="60">
+          <caret line="46" column="13" lean-forward="true" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/student/home_student.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="27" column="144" selection-start-line="27" selection-start-column="144" selection-end-line="27" selection-end-column="144" />
         </state>
       </provider>
     </entry>
