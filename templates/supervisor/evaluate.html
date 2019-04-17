@@ -1,0 +1,60 @@
+{% extends 'supervisor/base_supervisor.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <title>Supervised Student</title>
+        <style>
+    table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 2%;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+    .file-field.big .file-path-wrapper {
+    height: 3.2rem; }
+    .file-field.big .file-path-wrapper .file-path {
+    height: 3rem; }
+</style>
+</head>
+<body>
+{% block page_content %}
+<div class="row">
+    <!-- Area Chart -->
+    <div class="col-xl-12 col-lg-7">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Evaluation</h6>
+        </div>
+        <!-- Text Body -->
+           <div class="col-xl-12 card-body">
+           <p>Supervisor:</p>
+
+            {% csrf_token %}
+
+           <div align="center" class="submit-block table">
+                <button class="btn btn-outline-primary btn-md btn-block"><i class="fas fa-check"></i>
+                <span class="text">Save</span>
+                </button>
+            </div>
+
+           </form>
+           </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -98,6 +98,7 @@ tr:nth-child(even) {
                             <th>Marks allowed</th>
                             <th>Creation date</th>
                             <th>Deadline</th>
+                            <th><i class="fas fa-eye"></i></th>
                         </tr>
                         </thead>
 
@@ -110,6 +111,11 @@ tr:nth-child(even) {
                             <td>{{ all_assigned_task.marks_allowed }}</td>
                             <td>{{ all_assigned_task.created_date }}</td>
                              <td>{{ all_assigned_task.deadline }}</td>
+                             <td>
+                                 <a class="btn btn-outline-primary btn-md btn-block" href="{% url 'evaluation' all_assigned_task.pk %}">
+                                     </i>Evaluate
+                                </a>
+                             </td>
                         </tr>
                          </tbody>
                              {% endfor %}

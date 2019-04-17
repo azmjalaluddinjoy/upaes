@@ -30,10 +30,37 @@ height: 3rem; }
                             {% csrf_token %}
                             <div class="form-group"><br>
                             {% if approval_status == 'Eligible' %}
+
+                                <table class="table table-striped table-bordered table-hover" id="mydata">
+
+                       <br> <thead>
+                        <tr>
+                            <th>List</th>
+                            <th>Task Name</th>
+                            <th>Marks allocated</th>
+                            <th>Marks allowed</th>
+                            <th>Creation date</th>
+                            <th>Deadline</th>
+                        </tr>
+                        </thead>
+
+                        {% for assigned_work in assigned_work %}
+                         <tbody>
+                         <tr>
+                            <td>{{ forloop.counter }} </td>
+                            <td>{{ assigned_work.task_name }}</td>
+                            <td>{{ assigned_work.marks_allocated }}</td>
+                             <td>{{ assigned_work.marks_allowed }}</td>
+                            <td>{{ assigned_work.created_date }}</td>
+                             <td>{{ assigned_work.deadline }}</td>
+                        </tr>
+                         </tbody>
+                             {% endfor %}
+                         </table>
                             <p>Document Type</p>
                             <select name="document_type" class="form-control">
-                            {% for all_document_type in all_document_type %}
-                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
+                            {% for assigned_work in assigned_work %}
+                                <option value="{{ assigned_work.task_name }}">{{ assigned_work.task_name }}</option>
                             {% endfor %}
                             </select>
 {#                                <input type="text" class="form-control" name="projectCategory" placeholder="" required="required">#}

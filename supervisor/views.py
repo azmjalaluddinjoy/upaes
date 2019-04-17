@@ -10,7 +10,6 @@ def home(request):
     if request.session.get('advising_log'):
         supervisor_id = request.session.get('advising_log')
         supervisor_object = get_object_or_404(Supervisor, supervisor_id=supervisor_id)
-        # supervisor_profile_info = Supervisor.objects.filter(supervisor_id=supervisor_object)
         students = supervisor_object.supervised_set.all()
         # supervised_students = Supervised.objects.filter(supervisor_id=supervised_object)
         # supervised_students_information = Student.objects.filter(studentId=supervised_students)
@@ -40,6 +39,16 @@ def task_assign(request, student_pk):
                                                            'task_type': task_type,
                                                            'all_basic_info': all_basic_info,
                                                            'all_assigned_task': all_assigned_task})
+
+
+def evaluation(request, student_pk):
+    # task_object = Task.objects.filter(pk=task_pk)
+    task_info = Task.objects.get(pk=student_pk)
+
+    print(task_info.task_name)
+    print(student_pk)
+
+    return render(request, 'supervisor/evaluate.html')
 
 
 def add(request):

@@ -1,6 +1,10 @@
+import datetime
+
 from django.core.files.storage import FileSystemStorage
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
+
 from .models import Post, Student, Values
 from project.models import Category, ProjectPrimaryInfo, Comment, DocumentType, ProductFile, Supervised, Task
 from django.contrib.auth import login, authenticate
@@ -19,8 +23,9 @@ def home(request):
         this_student_project_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
         # if this_student_project_basic_info is not False:
         assigned_work = Task.objects.filter(student=student)
+        present = timezone.now()
         for assigned_work in assigned_work:
-            if assigned_work.task_name:
+            if assigned_work.deadline >= present:
                 new_task = assigned_work
                 print(assigned_work.task_name)
                 print(assigned_work.deadline)
@@ -63,7 +68,7 @@ def track_project(request):
         for project_basic in all_basic_info:
             if project_basic.approval is True:
                 approval_status = 'Eligible'
-                all_document_type = DocumentType.objects.all()
+                assigned_work = Task.objects.filter(student=student)
                 product_document = ProductFile.objects.all()
                 if request.method == 'POST':
                     document_type = request.POST['document_type']
@@ -75,7 +80,7 @@ def track_project(request):
                                                             product_file=uploaded_file)
                     product_file_save_request.save()
                 return render(request, 'student/track_project.html',
-                                  {'all_basic_info': all_basic_info, 'all_document_type': all_document_type,
+                                  {'all_basic_info': all_basic_info, 'assigned_work': assigned_work,
                                    'product_document': product_document, 'approval_status': approval_status})
             else:
                 approval_status = 'Not eligible'
@@ -87,21 +92,21 @@ def track_project(request):
 
 def process_product_document(request):
     if request.session.get('student_log'):
-        all_document_type = DocumentType.objects.all()
+        student_id = request.session.get('student_log')
+        logged_student = get_object_or_404(Student, studentId=student_id)
+        assigned_work = Task.objects.filter(student=logged_student)
         if request.method == 'POST':
-            student_id = request.session.get('student_log')
-            logged_student = get_object_or_404(Student, studentId=student_id)
             document_type = request.POST['document_type']
             request_type = get_object_or_404(DocumentType, process_product_type=document_type)
             product_information = ProductFile.objects.filter(file_tracking_type=request_type)
             student_comment = Comment.objects.filter(s_id=logged_student)
 
             # print(advising_comment)
-            return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type,
+            return render(request, 'student/process_product_view.html', {'assigned_work': assigned_work,
                                                                          'product_information': product_information,
                                                                          'all_comment': student_comment})
 
-        return render(request, 'student/process_product_view.html', {'all_document_type': all_document_type})
+        return render(request, 'student/process_product_view.html', {'assigned_work': assigned_work})
 
 
 def profile(request):

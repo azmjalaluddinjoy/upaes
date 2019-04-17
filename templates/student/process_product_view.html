@@ -31,8 +31,8 @@ height: 3rem; }
                             <div class="form-group"><br>
                             <p>Select your type</p>
                             <select name="document_type" class="form-control">
-                            {% for all_document_type in all_document_type %}
-                                <option value="{{ all_document_type.process_product_type }}">{{ all_document_type.process_product_type }}</option>
+                            {% for assigned_work in assigned_work %}
+                                <option value="{{ assigned_work.task_name }}">{{ assigned_work.task_name }}</option>
                             {% endfor %}
                             </select>
                             </div>
