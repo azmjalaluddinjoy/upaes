@@ -66,6 +66,7 @@ tr:nth-child(even) {
            </form>
            <p>Documents</p>
                {% for product_information in product_information %}
+
                     {% if product_information.product_file %}
                             <embed src="/media/{{ product_information.product_file }}" type="application/pdf" height="210px" width="150">
                             <a class="badge badge-pill badge-primary fas fa-eye" href="/media/{{ product_information.product_file }}">
