@@ -42,11 +42,12 @@ def evaluation(request, student_pk):
     if ProductFile.objects.filter(student_id=task_info.student):
         if ProductFile.objects.filter(file_tracking_type=task_info.task_name):
             product_this = ProductFile.objects.filter(file_tracking_type=task_info.task_name)
+            product_filtered_this_student = product_this.filter(student_id=task_info.student)
             if request.method == 'POST':
                 marks_allowed = request.POST['marks_allowed']
                 task_info.marks_allowed = marks_allowed
                 task_info.save()
-            return render(request, 'supervisor/evaluate.html', {'product_information': product_this,
+            return render(request, 'supervisor/evaluate.html', {'product_information': product_filtered_this_student,
                                                                 'task_info': task_info})
 
     return render(request, 'supervisor/evaluate.html')

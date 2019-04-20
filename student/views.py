@@ -98,11 +98,12 @@ def process_product_document(request):
             document_type = request.POST['document_type']
             request_type = get_object_or_404(DocumentType, process_product_type=document_type)
             product_information = ProductFile.objects.filter(file_tracking_type=request_type)
+            this_student_product_information = product_information.filter(student_id=logged_student)
             student_comment = Comment.objects.filter(s_id=logged_student)
 
             # print(advising_comment)
             return render(request, 'student/process_product_view.html', {'assigned_work': assigned_work,
-                                                                         'product_information': product_information,
+                                                                         'product_information': this_student_product_information,
                                                                          'all_comment': student_comment})
 
         return render(request, 'student/process_product_view.html', {'assigned_work': assigned_work})

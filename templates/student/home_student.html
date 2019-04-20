@@ -18,7 +18,7 @@
     {% if new_task != 'Nill' %}
 {#            {% for new_tas k in new_task %}#}
         <div class="alert alert-danger alert-dismissible">
-         <strong>New Task! <br>Task name: {{ new_task.task_name }} <br>Deadline: {{ new_task.deadline }}</strong>
+         <strong>New Task! <br>Task name: <a href="/student/track_project/">{{ new_task.task_name }} </a><br>Deadline: {{ new_task.deadline }}</strong>
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
 {#            {% endfor %}#}
