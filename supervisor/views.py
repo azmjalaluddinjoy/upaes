@@ -18,11 +18,19 @@ def home(request):
 
 
 def task_assign(request, student_pk):
+    marks = 0
+    marks_get = 0
     supervised_info = Supervised.objects.get(pk=student_pk)
     student_info = get_object_or_404(Student, studentId=supervised_info.s_id)
     all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student_info)
     task_type = DocumentType.objects.all()
     all_assigned_task = Task.objects.filter(student=student_info)
+    for task_marks in all_assigned_task:
+        marks = task_marks.marks_allowed + marks
+        marks_get = task_marks.marks_allocated + marks_get
+    # if all_assigned_task.marks_allowed is True:
+    # allowed = all_assigned_task.marks_allowed
+    # marks = allowed + marks
     if request.method == 'POST':
         assigned_task = request.POST['task_type']
         marks_allocated = request.POST['marks_allocated']
@@ -34,7 +42,9 @@ def task_assign(request, student_pk):
                                                            'student_info': student_info,
                                                            'task_type': task_type,
                                                            'all_basic_info': all_basic_info,
-                                                           'all_assigned_task': all_assigned_task})
+                                                           'all_assigned_task': all_assigned_task,
+                                                           'marks': marks,
+                                                           'marks_get': marks_get})
 
 
 def evaluation(request, student_pk):

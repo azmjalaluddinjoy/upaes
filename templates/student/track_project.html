@@ -29,7 +29,7 @@ height: 3rem; }
                             {% csrf_token %}
                             <div class="form-group"><br>
                             {% if approval_status == 'Eligible' %}
-
+                                <p>Marks Allowed: {{ marks }} out of {{ marks_get }}</p>
                                 <table class="table table-striped table-bordered table-hover" id="mydata">
                        <br> <thead>
                         <tr>
@@ -53,6 +53,7 @@ height: 3rem; }
                              <td>{{ assigned_work.deadline }}</td>
                         </tr>
                          </tbody>
+
                              {% endfor %}
                          </table>
                             <p>Document Type</p>

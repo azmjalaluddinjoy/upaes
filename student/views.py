@@ -65,10 +65,15 @@ def track_project(request):
         student_id = request.session.get('student_log')
         student = get_object_or_404(Student, studentId=student_id)
         all_basic_info = ProjectPrimaryInfo.objects.filter(s_id=student)
+        marks = 0
+        marks_get = 0
         for project_basic in all_basic_info:
             if project_basic.approval is True:
                 approval_status = 'Eligible'
                 assigned_work = Task.objects.filter(student=student)
+                for assigned in assigned_work:
+                    marks = assigned.marks_allowed + marks
+                    marks_get = assigned.marks_allocated + marks_get
                 product_document = ProductFile.objects.all()
                 if request.method == 'POST':
                     document_type = request.POST['document_type']
@@ -80,7 +85,9 @@ def track_project(request):
                     product_file_save_request.save()
                 return render(request, 'student/track_project.html',
                                   {'all_basic_info': all_basic_info, 'assigned_work': assigned_work,
-                                   'product_document': product_document, 'approval_status': approval_status})
+                                   'product_document': product_document, 'approval_status': approval_status,
+                                   'marks': marks,
+                                   'marks_get': marks_get})
             else:
                 approval_status = 'Not eligible'
                 return render(request, 'student/track_project.html', {'all_basic_info': all_basic_info,
@@ -144,7 +151,7 @@ def registration(request):
 def add_registered_student(request):
     first_name = request.POST["first_name"]
     last_name = request.POST["last_name"]
-    student_id = request.POS0T["studentId"]
+    student_id = request.POST["studentId"]
     batch = request.POST["batch"]
     semester = request.POST["semester"]
     enroll_key = request.POST["enrollKey"]
